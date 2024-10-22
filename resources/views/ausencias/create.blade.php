@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('home')
 
 @section('content')
 <div class="container">
@@ -9,7 +9,10 @@
             <label for="tipoausencia">Tipo de Ausencia</label>
             <input type="text" name="tipoausencia" class="form-control" required>
         </div>
-        <button type="submit" class="btn btn-primary">Guardar</button>
+        <button type="submit" class="btn btn-primary"><i class="fa-solid fa-floppy-disk"></i> Guardar</button>
+        <button type="button" id="volver" class="btn btn-secondary" onclick="window.location.href='{{ route('ausencias.index') }}'">
+            <i class="fa-solid fa-circle-left"></i> Volver
+        </button>
     </form>
 </div>
 @endsection

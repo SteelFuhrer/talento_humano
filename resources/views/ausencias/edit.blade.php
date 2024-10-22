@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('home')
 
 @section('content')
 <div class="container">
@@ -13,8 +13,10 @@
                     <input type="text" class="form-control" id="tipoausencia" name="tipoausencia" value="{{ $ausencia->tipoausencia }}" required>
                 </div>
                 <div class="mt-4">
-                    <button type="submit" class="btn btn-primary">Guardar Cambios</button>
-                    <a href="{{ route('ausencias.index') }}" class="btn btn-secondary">Cancelar</a>
+                    <button type="submit" class="btn btn-primary"><i class="fa-solid fa-floppy-disk"></i> Guardar Cambios</button>
+                    <button type="button" id="volver" class="btn btn-secondary" onclick="window.location.href='{{ route('ausencias.index') }}'">
+                        <i class="fa-solid fa-circle-left"></i> Volver
+                    </button>
                 </div>
             </form>
         </div>

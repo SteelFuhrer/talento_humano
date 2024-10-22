@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('home')
 
 @section('content')
 <div class="container">
@@ -17,13 +17,12 @@
                     @foreach($ausencias as $ausencia)
                         <tr>
                             <td>{{ $ausencia->tipoausencia }}</td>
-                            <td>
-                                <a href="{{ route('ausencias.show', ['ausencia' => $ausencia->id_ausencia]) }}" class="btn btn-info">Ver</a>
-                                <a href="{{ route('ausencias.edit', ['ausencia' => $ausencia->id_ausencia]) }}" class="btn btn-warning">Editar</a>
-                                <form action="{{ route('ausencias.destroy', ['ausencia' => $ausencia->id_ausencia]) }}" method="POST" style="display:inline;">
+                            <td style="width:120px;">
+                                <a href="{{ route('ausencias.edit', ['ausencia' => $ausencia->id_ausencia]) }}" class="btn btn-warning"><i class="fa-solid fa-pen-to-square"></i></a>
+                                <form action="{{ route('ausencias.destroy', ['ausencia' => $ausencia->id_ausencia]) }}" method="POST" style="display:inline;" onsubmit="return confirm('Are you sure you want to delete this user?');">
                                     @csrf
                                     @method('DELETE')
-                                    <button type="submit" class="btn btn-danger">Eliminar</button>
+                                    <button type="submit" class="btn btn-danger"><i class="fa-solid fa-trash"></i></button>
                                 </form>
                             </td>
                         </tr>
