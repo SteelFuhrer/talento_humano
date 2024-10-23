@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AusenciaController;
+use App\Http\Controllers\CmotivopaseController;
 use App\Http\Controllers\EmpleadoController;
 use App\Http\Controllers\CtipoesController;
 use App\Http\Controllers\CtiporetrasoController;
@@ -28,7 +29,6 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 
 Route::resource('ausencias', AusenciaController::class);
 Route::resource('empleados', EmpleadoController::class);
-
+Route::resource('cmotivopases',CmotivopaseController::class);
 Route::resource('ctipoes', CtipoesController::class);
 Route::resource('ctiporetraso', CtiporetrasoController::class);
-
