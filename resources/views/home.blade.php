@@ -277,7 +277,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                 </a>
               </li>
               <li class="nav-item">
-                <a href="#" class="nav-link">
+                <a href="cmotivopases" class="nav-link">
                     <i class="fa-solid fa-user-shield"></i>
                   <p>Pases</p>
                 </a>
@@ -324,7 +324,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
           @yield('content')  <!-- Aquí se insertará el contenido de otras vistas -->
       </div>
   </div>
-    
+
   </div>
   <!-- /.content-wrapper -->
 

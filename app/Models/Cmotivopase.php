@@ -11,15 +11,15 @@ class Cmotivopase extends Model
 
     protected $table = 'cmotivopase';
 
-    protected $primaryKey = 'IdMotivoPase';
+    protected $primaryKey = 'id_motivopase';
 
     protected $fillable = [
-        'MotivoPase',
+        'motivopase',
     ];
 
     public function paseEmpleados()
     {
-        return $this->hasMany(PaseEmpleado::class, 'IdMotivoPase');
+        return $this->hasMany(PaseEmpleado::class, 'id_motivopase');
     }
 
 

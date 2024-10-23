@@ -12,9 +12,9 @@ return new class extends Migration
     public function up()
     {
         Schema::create('cmotivopase', function (Blueprint $table) {
-            $table->increments('IdMotivoPase'); 
-            $table->string('MotivoPase', 255); 
-            $table->timestamps(); 
+            $table->increments('id_motivopase');
+            $table->string('motivopase', 255);
+            $table->timestamps();
         });
     }
     /**
