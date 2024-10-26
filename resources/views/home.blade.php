@@ -218,8 +218,16 @@ scratch. This page gets rid of all links and provides the needed markup only.
                 <i class="fa-solid fa-people-group"></i>
               <p>
                 Departamentos
+                <i class="right fas fa-angle-left"></i>
               </p>
             </a>
+
+                <li class="nav-item">
+                  <a href="/departamento" class="nav-link">
+                    <i class="fa-solid fa-users-gear"></i>
+                  <p>Gestión de departamentos</p>
+                </a>
+              </li>
           </li>
 
           <!-- Inicia empleados -->
@@ -345,7 +353,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
       Let nothing stop you
     </div>
     <!-- Default to the left -->
-    <strong>Copyright &copy; 2014-2021 <a href="">Desarrollo Web-USAP</a>.</strong> All rights reserved.
+    <strong>Copyright &copy; 2014-2024 <a href="">Desarrollo Web-USAP</a>.</strong> All rights reserved.
   </footer>
 </div>
 <!-- ./wrapper -->
