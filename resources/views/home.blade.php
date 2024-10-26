@@ -192,13 +192,13 @@ scratch. This page gets rid of all links and provides the needed markup only.
                 </a>
               </li>
               <li class="nav-item">
-                <a href="#" class="nav-link ">
+                <a href="/cmotivopases" class="nav-link ">
                     <i class="fa-solid fa-user-tag"></i>
                   <p>Tipos de Pase</p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="#" class="nav-link ">
+                <a href="/ctiporetraso" class="nav-link ">
                     <i class="fa-solid fa-user-clock"></i>
                   <p>Tipos de Retraso</p>
                 </a>
@@ -359,4 +359,28 @@ scratch. This page gets rid of all links and provides the needed markup only.
 <!-- AdminLTE App -->
 <script src="{{ asset('dist/js/adminlte.min.js') }}"></script>
 </body>
+<script>
+
+  toastr.options = {
+              "closeButton": true,
+              "debug": false,
+              "newestOnTop": false,
+              "progressBar": true,
+              "positionClass": "toast-top-right",
+              "preventDuplicates": false,
+              "onclick": null,
+              "showDuration": "300",
+              "hideDuration": "1000",
+              "timeOut": "2500",
+              "extendedTimeOut": "0",
+              "showEasing": "swing",
+              "hideEasing": "linear",
+              "showMethod": "fadeIn",
+              "hideMethod": "fadeOut"
+          };
+  
+      @if (session('success'))
+              toastr.success("{{ session('success') }}", "Success");
+      @endif
+  </script>
 </html>
