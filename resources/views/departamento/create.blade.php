@@ -11,7 +11,7 @@
                 <div class="alert alert-danger">
                     <ul>
                         @foreach ($errors->all() as $error)
-                        <li>{{$error}}</li>
+                        <li>{{ $error }}</li>
                         @endforeach
                     </ul>
                 </div>
@@ -27,6 +27,17 @@
                 <div class="form-group">
                     <label for="telefonodpto">Teléfono:</label>
                     <input type="text" id="telefonodpto" name="telefonodpto" class="form-control" value="{{ old('telefonodpto') }}" required>
+                </div>
+                <div class="form-group">
+                    <label for="cijdpto">Jefe del Departamento:</label>
+                    <select name="cijdpto" id="cijdpto" class="form-control" required>
+                        <option value="">Seleccione un jefe</option>
+                        @foreach ($empleados as $empleado)
+                            <option value="{{ $empleado->ci }}" {{ old('cijdpto') == $empleado->ci ? 'selected' : '' }}>
+                                {{ $empleado->nombre }} {{ $empleado->apellido }}
+                            </option>
+                        @endforeach
+                    </select>
                 </div>
         </div>
         <div class="card-footer">

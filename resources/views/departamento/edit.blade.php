@@ -3,7 +3,7 @@
 @section('content')
 <div class="container">
     <div class="card" style="margin: 10px; max-width: 1200px; margin: auto;">
-        <h2 class="card-header">Editar departamento</h2>
+        <h2 class="card-header">Editar Departamento</h2>
         <div class="card-body">
             <form method="POST" action="{{ route('departamento.update', $departamento->iddpto) }}">
                 @csrf
@@ -12,7 +12,7 @@
                 <div class="alert alert-danger">
                     <ul>
                         @foreach ($errors->all() as $error)
-                        <li>{{$error}}</li>
+                        <li>{{ $error }}</li>
                         @endforeach
                     </ul>
                 </div>
@@ -28,6 +28,17 @@
                 <div class="form-group">
                     <label for="telefonodpto">Teléfono:</label>
                     <input type="text" id="telefonodpto" name="telefonodpto" class="form-control" value="{{ old('telefonodpto', $departamento->telefonodpto) }}" required>
+                </div>
+                <div class="form-group">
+                    <label for="cijdpto">Jefe del Departamento:</label>
+                    <select name="cijdpto" id="cijdpto" class="form-control" required>
+                        <option value="">Seleccione un jefe</option>
+                        @foreach ($empleados as $empleado)
+                            <option value="{{ $empleado->ci }}" {{ old('cijdpto', $departamento->cijdpto) == $empleado->ci ? 'selected' : '' }}>
+                                {{ $empleado->nombre }} {{ $empleado->apellido }}
+                            </option>
+                        @endforeach
+                    </select>
                 </div>
         </div>
         <div class="card-footer">

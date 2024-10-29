@@ -11,12 +11,12 @@ return new class extends Migration
         Schema::create('departamento', function (Blueprint $table) {
             $table->id('iddpto');
             $table->string('nombredpto', 255);
-            $table->unsignedInteger('cijdpto'); // Cambiado a unsignedInteger para que coincida con 'ci' en 'empleados'
+            $table->unsignedInteger('cijdpto'); // Clave foránea a 'empleados'
             $table->string('correoelectronicodpto', 255);
-            $table->string('telefonodpto', 12);
+            $table->string('telefonodpto', 15);
             $table->timestamps();
 
-            // Establecer la relación foránea con la tabla de empleados
+            // Relación con la tabla empleados
             $table->foreign('cijdpto')->references('ci')->on('empleados')->onDelete('cascade');
         });
     }

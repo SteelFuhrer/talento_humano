@@ -10,20 +10,16 @@ class Departamento extends Model
     use HasFactory;
 
     protected $table = 'departamento';
-
-
     protected $primaryKey = 'iddpto';
-
-    // Indica que la clave primaria es de tipo entero y que se autoincrementa
     public $incrementing = true;
     protected $keyType = 'int';
 
-    // Columnas que son asignables masivamente
     protected $fillable = ['nombredpto', 'cijdpto', 'correoelectronicodpto', 'telefonodpto'];
 
-    // Relaciones (si existen, puedes definirlas aquí)
+    // Relación para obtener el jefe del departamento
     public function jefe()
     {
         return $this->belongsTo(Empleado::class, 'cijdpto', 'ci');
     }
 }
+

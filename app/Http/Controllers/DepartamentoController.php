@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Departamento;
+use App\Models\Empleado;
 use Illuminate\Http\Request;
 
 class DepartamentoController extends Controller
@@ -15,14 +16,15 @@ class DepartamentoController extends Controller
 
     public function create()
     {
-        return view('departamento.create');
+        $empleados = Empleado::all(); // Obtener todos los empleados para el campo select
+        return view('departamento.create', compact('empleados'));
     }
 
     public function store(Request $request)
     {
         $request->validate([
             'nombredpto' => 'required|string|max:255',
-            'cijdpto' => 'required|integer', 
+            'cijdpto' => 'required|integer|exists:empleados,ci', // Validación para asegurar que el jefe existe
             'correoelectronicodpto' => 'required|string|email|max:255',
             'telefonodpto' => 'required|string|max:12',
         ]);
@@ -39,14 +41,15 @@ class DepartamentoController extends Controller
 
     public function edit(Departamento $departamento)
     {
-        return view('departamento.edit', compact('departamento'));
+        $empleados = Empleado::all(); // Obtener todos los empleados para el campo select en edición
+        return view('departamento.edit', compact('departamento', 'empleados'));
     }
 
     public function update(Request $request, Departamento $departamento)
     {
         $request->validate([
             'nombredpto' => 'required|string|max:255',
-            'cijdpto' => 'required|integer',
+            'cijdpto' => 'required|integer|exists:empleados,ci',
             'correoelectronicodpto' => 'required|string|email|max:255',
             'telefonodpto' => 'required|string|max:12',
         ]);
