@@ -1,17 +1,19 @@
 @extends('home')
 @section('content')
-<div class="container">
-    <div class="row" style="margin:20px">
-        <div class="col-12">
-            <div class="card">
+<div class="content" style="margin-left: 20px">
+    <h2>Gestión de empleados</h2>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card card-outline card-primary">
                 <div class="card-header">
-                    <h2>Gestión de empleados</h2>
+                    <h3 class="card-title"><b>Listado de empleados</b></h3>
+                    <div class="card-tools">
+                    <a href="{{ route('empleados.create') }}" class="btn btn-success btn-sm" title="Nuevo Registro"><i class="fa-solid fa-circle-plus"></i> Nuevo</a>
+                    </div>
                 </div>
                 <div class="card-body">
-                    <a href="{{ route('empleados.create') }}" class="btn btn-success btn-sm" title="Add New"><i class="fa-solid fa-circle-plus"></i> Nuevo</a>
-                    <br><br>
                     <div class="table-responsive">
-                        <table class="table table-bordered">
+                        <table id="example1" class="table table-bordered table-striped">
                             <thead>
                                 <tr>
                                     <th>#</th>
@@ -29,13 +31,13 @@
                                     <td>{{ $empleado->nombre.' '.$empleado->apellido }}</td>
                                     <td >{{ $empleado->correoelectronico }}</td>
                                     <td >{{ $empleado->iddpto }}</td>
-                                    <td style="width:180px;">
-                                        <a href="{{ route('empleados.show', ['empleado' => $empleado->ci]) }}" class="btn btn-info"><i class="fa-solid fa-eye"></i></a>
-                                        <a href="{{ route('empleados.edit', ['empleado' => $empleado->ci]) }}" class="btn btn-warning"><i class="fa-solid fa-pen-to-square"></i></a>
+                                    <td style="width:140px;">
+                                        <a href="{{ route('empleados.show', ['empleado' => $empleado->ci]) }}" class="btn btn-info" title="Ver registro"><i class="fa-solid fa-eye"></i></a>
+                                        <a href="{{ route('empleados.edit', ['empleado' => $empleado->ci]) }}" class="btn btn-warning" title="Modificar registro"><i class="fa-solid fa-pen-to-square"></i></a>
                                         <form action="{{ route('empleados.destroy', ['empleado' => $empleado->ci]) }}" method="POST" style="display:inline;" onsubmit="return confirm('Estás seguro de eliminar este registro de empleado?');">
                                             @csrf
                                             @method('DELETE')
-                                            <button type="submit" class="btn btn-danger"><i class="fa-solid fa-trash"></i></button>
+                                            <button type="submit" class="btn btn-danger" title="Eliminar registro"><i class="fa-solid fa-trash"></i></button>
                                         </form>
                                     </td>
                                 </tr>
@@ -43,6 +45,59 @@
                             @endforeach
                             </tbody>
                         </table>
+                        <!-- Page specific script -->
+                        <script>
+                            $(function () {
+                                $("#example1").DataTable({
+                                    "pageLength": 10,
+                                    "language": {
+                                        "emptyTable": "No hay información",
+                                        "info": "Mostrando _START_ a _END_ de _TOTAL_ Empleados",
+                                        "infoEmpty": "Mostrando 0 a 0 de 0 Empleados",
+                                        "infoFiltered": "(Filtrado de _MAX_ total Empleados)",
+                                        "infoPostFix": "",
+                                        "thousands": ",",
+                                        "lengthMenu": "Mostrar _MENU_ Empleados",
+                                        "loadingRecords": "Cargando...",
+                                        "processing": "Procesando...",
+                                        "search": "Buscador:",
+                                        "zeroRecords": "Sin resultados encontrados",
+                                        "paginate": {
+                                            "first": "Primero",
+                                            "last": "Ultimo",
+                                            "next": "Siguiente",
+                                            "previous": "Anterior"
+                                        }
+                                    },
+                                    "responsive": true, "lengthChange": true, "autoWidth": false,
+                                    buttons: [{
+                                        extend: 'collection',
+                                        text: 'Reportes',
+                                        orientation: 'landscape',
+                                        buttons: [{
+                                            text: 'Copiar',
+                                            extend: 'copy',
+                                        }, {
+                                            extend: 'pdf'
+                                        },{
+                                            extend: 'csv'
+                                        },{
+                                            extend: 'excel'
+                                        },{
+                                            text: 'Imprimir',
+                                            extend: 'print'
+                                        }
+                                        ]
+                                    },
+                                        {
+                                            extend: 'colvis',
+                                            text: 'Visor de columnas',
+                                            collectionLayout: 'fixed one-column'
+                                        }
+                                    ],
+                                }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
+                            });
+                        </script>
                     </div>
                 </div>
             </div>
