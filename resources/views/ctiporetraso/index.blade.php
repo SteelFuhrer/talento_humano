@@ -1,26 +1,16 @@
-<!DOCTYPE html>
-<html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tipos de Retraso</title>
-    <!-- Bootstrap CSS -->
-    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
-</head>
-<body>
-    <div class="container mt-5">
-        <h1>Tipos de Retraso</h1>
-        <a href="{{ route('ctiporetraso.create') }}" class="btn btn-primary mb-3">Agregar Tipo de Retraso</a>
-        
-        @if(session('success'))
-            <div class="alert alert-success">{{ session('success') }}</div>
-        @endif
-
+@extends('home')
+@section('content')
+<div class="container">
+    <div class="row" style="margin:20px">
+      <div class="col-12">
         <div class="card">
             <div class="card-header">
-                <h5 class="mb-0">Lista de Tipos de Retraso</h5>
+                <h2>Gestión de tipos de retraso</h2>
             </div>
-            <div class="card-body">
+        <div class="card-body">
+        <a href="{{ route('ctiporetraso.create') }}" class="btn btn-success btn-sm" title="Nuevo"><i class="fa-solid fa-circle-plus"></i> Nuevo</a>
+        <br><br>
+        <div class="table-responsive">    
                 <table class="table table-bordered">
                     <thead>
                         <tr>
@@ -49,10 +39,7 @@
             </div>
         </div>
     </div>
-
-    <!-- Bootstrap JS and dependencies -->
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-</body>
-</html>
+</div>
+</div>
+</div>
+@endsection

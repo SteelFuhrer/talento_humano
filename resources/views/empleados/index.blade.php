@@ -11,7 +11,7 @@
                     <a href="{{ route('empleados.create') }}" class="btn btn-success btn-sm" title="Add New"><i class="fa-solid fa-circle-plus"></i> Nuevo</a>
                     <br><br>
                     <div class="table-responsive">
-                        <table class="table">
+                        <table class="table table-bordered">
                             <thead>
                                 <tr>
                                     <th>#</th>
