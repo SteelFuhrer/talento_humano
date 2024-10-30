@@ -2,99 +2,70 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Ausencia;
+use App\Models\Usuarios;
 use Illuminate\Http\Request;
 
-class AusenciaController extends Controller
+class UsuariosController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function index()
     {
-        $ausencias = Ausencia::all();
-        return view('ausencias.index', compact('ausencias'));
+        $usuarios = Usuarios::all();
+        return view('usuarios.index', compact('usuarios'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function create()
     {
-        return view('ausencias.create');
+        return view('usuarios.create');
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
     public function store(Request $request)
     {
         $request->validate([
-            'tipoausencia' => 'required|string|max:255',
+            'nombre_completo' => 'required|string|max:15',
+            'email' => 'required|email|unique:usuarios',
+            'password' => 'required|string|min:8',
         ]);
 
-        Ausencia::create($request->all());
+        Usuarios::create([
+            'nombre_completo' => $request->nombre_completo,
+            'email' => $request->email,
+            'password' => bcrypt($request->password),
+        ]);
 
-        return redirect()->route('ausencias.index')->with('success', 'Ausencia creada exitosamente.');
+        return redirect()->route('usuarios.index')->with('success', 'Usuario creado exitosamente.');
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\Ausencia  $ausencia
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Ausencia $ausencia)
+    public function show(Usuarios $usuario)
     {
-        return view('ausencias.show', compact('ausencia'));
+        return view('usuarios.show', compact('usuario'));
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\Ausencia  $ausencia
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Ausencia $ausencia)
+    public function edit(Usuarios $usuario)
     {
-        return view('ausencias.edit', compact('ausencia'));
+        return view('usuarios.edit', compact('usuario'));
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Ausencia  $ausencia
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, Ausencia $ausencia)
+    public function update(Request $request, Usuarios $usuario)
     {
         $request->validate([
-            'tipoausencia' => 'required|string|max:255',
+            'nombre_completo' => 'sometimes|required|string|max:15',
+            'email' => 'sometimes|required|email|unique:usuarios,email,' . $usuario->id,
+            'password' => 'sometimes|required|string|min:8',
         ]);
 
-        $ausencia->update($request->all());
+        $usuario->update([
+            'nombre_completo' => $request->nombre_completo ?? $usuario->nombre_completo,
+            'email' => $request->email ?? $usuario->email,
+            'password' => $request->password ? bcrypt($request->password) : $usuario->password,
+        ]);
 
-        return redirect()->route('ausencias.index')->with('success', 'Ausencia actualizada exitosamente.');
+        return redirect()->route('usuarios.index')->with('success', 'Usuario actualizado exitosamente.');
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\Ausencia  $ausencia
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(Ausencia $ausencia)
+    public function destroy(Usuarios $usuario)
     {
-        $ausencia->delete();
+        $usuario->delete();
 
-        return redirect()->route('ausencias.index')->with('success', 'Ausencia eliminada exitosamente.');
+        return redirect()->route('usuarios.index')->with('success', 'Usuario eliminado exitosamente.');
     }
 }
