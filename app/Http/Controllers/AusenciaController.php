@@ -37,7 +37,7 @@ class AusenciaController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'tipoausencia' => 'required|string|max:255',
+            'tipoausencia' => 'required|string|max:255|min:10',
         ]);
 
         Ausencia::create($request->all());
@@ -77,7 +77,7 @@ class AusenciaController extends Controller
     public function update(Request $request, Ausencia $ausencia)
     {
         $request->validate([
-            'tipoausencia' => 'required|string|max:255',
+            'tipoausencia' => 'required|string|max:255|min:10',
         ]);
 
         $ausencia->update($request->all());

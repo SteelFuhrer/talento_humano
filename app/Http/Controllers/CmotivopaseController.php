@@ -21,7 +21,7 @@ class CmotivopaseController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'motivopase' => 'required|string|max:255',
+            'motivopase' => 'required|string|max:255|min:10',
         ]);
 
         cmotivopase::create($request->all());
@@ -42,7 +42,7 @@ class CmotivopaseController extends Controller
     public function update(Request $request, cmotivopase $cmotivopase)
     {
         $request->validate([
-            'motivopase' => 'required|string|max:255',
+            'motivopase' => 'required|string|max:255|min:10',
         ]);
 
         $cmotivopase->update($request->all());

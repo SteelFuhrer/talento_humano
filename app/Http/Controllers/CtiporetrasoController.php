@@ -25,7 +25,7 @@ class CtiporetrasoController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'tipoderetraso' => 'required|string|max:255',
+            'tipoderetraso' => 'required|string|max:255|min:10',
             // No validar 'numero' ya que no es un campo de la base de datos
         ]);
 
@@ -55,7 +55,7 @@ class CtiporetrasoController extends Controller
     public function update(Request $request, $idtiporetraso)
     {
         $request->validate([
-            'tipoderetraso' => 'required|string|max:255',
+            'tipoderetraso' => 'required|string|max:255|min:10',
         ]);
 
         // Buscar el tipo de retraso por ID

@@ -21,8 +21,8 @@ class EmpleadoController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'nombre' => 'required|string|max:255',
-            'apellido' => 'required|string|max:255',
+            'nombre' => 'required|string|max:255|min:2',
+            'apellido' => 'required|string|max:255|min:2',
             'apellido2' => 'nullable|string|max:255',
             'sexo' => 'required|string|',
             'direccionparticular' => 'required|string|max:255',
@@ -52,8 +52,8 @@ class EmpleadoController extends Controller
     public function update(Request $request, Empleado $empleado)
     {
         $request->validate([
-            'nombre' => 'required|string|max:255',
-            'apellido' => 'required|string|max:255',
+            'nombre' => 'required|string|max:255|min:2',
+            'apellido' => 'required|string|max:255|min:2',
             'apellido2' => 'nullable|string|max:255',
             'sexo' => 'required|string|',
             'direccionparticular' => 'required|string|max:255',
