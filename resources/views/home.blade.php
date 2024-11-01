@@ -42,6 +42,11 @@ scratch. This page gets rid of all links and provides the needed markup only.
       <li class="nav-item d-none d-sm-inline-block">
         <a href="#" class="nav-link">Contacto</a>
       </li>
+
+      <!-- Agregar el botón aquí -->
+      <li class="nav-item d-none d-sm-inline-block">
+        <a href="{{ route('asistencia.form') }}" class="btn btn-primary nav-link">Registrar mi asistencia</a>
+      </li>
     </ul>
 
     <!-- Right navbar links -->
