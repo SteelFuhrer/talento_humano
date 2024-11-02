@@ -37,10 +37,15 @@ scratch. This page gets rid of all links and provides the needed markup only.
         <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
       </li>
       <li class="nav-item d-none d-sm-inline-block">
-        <a href="index3.html" class="nav-link">Inicio</a>
+        <a href="/home" class="nav-link">Inicio</a>
       </li>
       <li class="nav-item d-none d-sm-inline-block">
         <a href="#" class="nav-link">Contacto</a>
+      </li>
+
+      <!-- Agregar el botón aquí -->
+      <li class="nav-item d-none d-sm-inline-block">
+        <a href="{{ route('asistencia.form') }}" class="btn btn-primary nav-link">Registrar mi asistencia</a>
       </li>
     </ul>
 
@@ -224,20 +229,10 @@ scratch. This page gets rid of all links and provides the needed markup only.
           <!-- Fin auxiliares -->
 
           <li class="nav-item">
-            <a href="#" class="nav-link active">
+            <a href="/departamento" class="nav-link active">
                 <i class="fa-solid fa-people-group"></i>
-              <p>
-                Departamentos
-                <i class="right fas fa-angle-left"></i>
-              </p>
+              <p>Departamentos</p>
             </a>
-
-                <li class="nav-item">
-                  <a href="/departamento" class="nav-link">
-                    <i class="fa-solid fa-users-gear"></i>
-                  <p>Gestión de departamentos</p>
-                </a>
-              </li>
           </li>
 
           <!-- Inicia empleados -->

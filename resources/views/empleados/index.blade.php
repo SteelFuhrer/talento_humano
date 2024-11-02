@@ -34,7 +34,7 @@
                                     <td style="width:140px;">
                                         <a href="{{ route('empleados.show', ['empleado' => $empleado->ci]) }}" class="btn btn-info" title="Ver registro"><i class="fa-solid fa-eye"></i></a>
                                         <a href="{{ route('empleados.edit', ['empleado' => $empleado->ci]) }}" class="btn btn-warning" title="Modificar registro"><i class="fa-solid fa-pen-to-square"></i></a>
-                                        <form action="{{ route('empleados.destroy', ['empleado' => $empleado->ci]) }}" method="POST" style="display:inline;" onsubmit="return confirm('Estás seguro de eliminar este registro de empleado?');">
+                                        <form action="{{ route('empleados.destroy', ['empleado' => $empleado->ci]) }}" method="POST" style="display:inline;" onsubmit="return confirm('Está seguro de eliminar este registro?');">
                                             @csrf
                                             @method('DELETE')
                                             <button type="submit" class="btn btn-danger" title="Eliminar registro"><i class="fa-solid fa-trash"></i></button>
@@ -53,12 +53,12 @@
                                     "pageLength": 10,
                                     "language": {
                                         "emptyTable": "No hay información",
-                                        "info": "Mostrando _START_ a _END_ de _TOTAL_ Empleados",
-                                        "infoEmpty": "Mostrando 0 a 0 de 0 Empleados",
-                                        "infoFiltered": "(Filtrado de _MAX_ total Empleados)",
+                                        "info": "Mostrando _START_ a _END_ de _TOTAL_ Registros",
+                                        "infoEmpty": "Mostrando 0 a 0 de 0 Registros",
+                                        "infoFiltered": "(Filtrado de _MAX_ total Registros)",
                                         "infoPostFix": "",
                                         "thousands": ",",
-                                        "lengthMenu": "Mostrar _MENU_ Empleados",
+                                        "lengthMenu": "Mostrar _MENU_ Registros",
                                         "loadingRecords": "Cargando...",
                                         "processing": "Procesando...",
                                         "search": "Buscador:",

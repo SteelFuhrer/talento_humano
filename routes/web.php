@@ -8,6 +8,7 @@ use App\Http\Controllers\CtipoesController;
 use App\Http\Controllers\CtiporetrasoController;
 use App\Http\Controllers\DepartamentoController;
 use App\Http\Controllers\HorarioController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -19,7 +20,6 @@ use App\Http\Controllers\HorarioController;
 |
 */
 
-
 Route::get('/', function () {
     return view('welcome');
 });
@@ -30,9 +30,8 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 
 Route::resource('ausencias', AusenciaController::class);
 Route::resource('empleados', EmpleadoController::class);
-Route::resource('cmotivopases',CmotivopaseController::class);
+Route::resource('cmotivopases', CmotivopaseController::class);
 Route::resource('ctipoes', CtipoesController::class);
 Route::resource('ctiporetraso', CtiporetrasoController::class);
 Route::resource('departamento', DepartamentoController::class);
 Route::resource('horarios', HorarioController::class);
-

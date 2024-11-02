@@ -21,7 +21,7 @@ class CtipoesController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'tipoes' => 'required|max:10',
+            'tipoes' => 'required|min:5',
         ]);
 
         Ctipoes::create($request->all());
@@ -45,7 +45,7 @@ class CtipoesController extends Controller
     {
         
         $request->validate([
-            'tipoes' => 'required|max:10',
+            'tipoes' => 'required|min:10|max:100',
         ]);
 
         
