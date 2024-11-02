@@ -35,7 +35,7 @@ class EntradasalidaController extends Controller
         $tipoAsistencia = $request->input('tipo_asistencia');
     
         // Validar que el CI exista en la tabla empleados
-        $empleado = \DB::table('empleados')->where('ci', $ci)->first();
+        $empleado = DB::table('empleados')->where('ci', $ci)->first();
         if (!$empleado) {
             return redirect()->back()->with('error', 'El CI ingresado no corresponde a ningún empleado.');
         }

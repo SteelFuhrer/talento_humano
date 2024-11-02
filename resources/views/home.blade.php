@@ -45,7 +45,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
 
       <!-- Agregar el botón aquí -->
       <li class="nav-item d-none d-sm-inline-block">
-        <a href="{{ route('asistencia.form') }}" class="btn btn-primary nav-link">Registrar mi asistencia</a>
+        <a href="" class="btn btn-primary nav-link">Registrar mi asistencia</a>
       </li>
     </ul>
 
@@ -214,7 +214,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
               </li>
               <li class="nav-item">
                 <a href="/ctiporetraso" class="nav-link ">
-                    <i class="fa-solid fa-user-clock"></i>
+                  <i class="fa-solid fa-user-injured"></i>
                   <p>Tipos de Retraso</p>
                 </a>
               </li>
@@ -222,6 +222,12 @@ scratch. This page gets rid of all links and provides the needed markup only.
                 <a href="/ctipoes" class="nav-link ">
                     <i class="fa-solid fa-person-chalkboard"></i>
                   <p>Tipos Entradas y Salidas</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="/horarios" class="nav-link ">
+                  <i class="fa-solid fa-user-clock"></i>
+                  <p>Tipos de Horarios</p>
                 </a>
               </li>
             </ul>
@@ -252,7 +258,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                 </a>
               </li>
               <li class="nav-item">
-                <a href="#" class="nav-link">
+                <a href="" class="nav-link">
                     <i class="fa-solid fa-calendar-days"></i>
                   <p>Gestión de Horarios</p>
                 </a>

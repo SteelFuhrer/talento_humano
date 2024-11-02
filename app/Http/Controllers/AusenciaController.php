@@ -2,70 +2,58 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Usuarios;
+use App\Models\Ausencia;
 use Illuminate\Http\Request;
 
-class UsuariosController extends Controller
+class AusenciaController extends Controller
 {
     public function index()
     {
-        $usuarios = Usuarios::all();
-        return view('usuarios.index', compact('usuarios'));
+        $ausencias = Ausencia::all();
+        return view('ausencias.index', compact('ausencias'));
     }
 
     public function create()
     {
-        return view('usuarios.create');
+        return view('ausencias.create');
     }
 
     public function store(Request $request)
     {
         $request->validate([
-            'nombre_completo' => 'required|string|max:15',
-            'email' => 'required|email|unique:usuarios',
-            'password' => 'required|string|min:8',
+            'tipoausencia' => 'required|string|max:255',
         ]);
 
-        Usuarios::create([
-            'nombre_completo' => $request->nombre_completo,
-            'email' => $request->email,
-            'password' => bcrypt($request->password),
-        ]);
+        Ausencia::create($request->all());
 
-        return redirect()->route('usuarios.index')->with('success', 'Usuario creado exitosamente.');
+        return redirect()->route('ausencias.index')->with('success', 'Ausencia creada exitosamente.');
     }
 
-    public function show(Usuarios $usuario)
+    public function show(Ausencia $ausencia)
     {
-        return view('usuarios.show', compact('usuario'));
+        return view('ausencias.show', compact('ausencia'));
     }
 
-    public function edit(Usuarios $usuario)
+    public function edit(Ausencia $ausencia)
     {
-        return view('usuarios.edit', compact('usuario'));
+        return view('ausencias.edit', compact('ausencia'));
     }
 
-    public function update(Request $request, Usuarios $usuario)
+    public function update(Request $request, Ausencia $ausencia)
     {
         $request->validate([
-            'nombre_completo' => 'sometimes|required|string|max:15',
-            'email' => 'sometimes|required|email|unique:usuarios,email,' . $usuario->id,
-            'password' => 'sometimes|required|string|min:8',
+           'tipoausencia' => 'required|string|max:255',
         ]);
 
-        $usuario->update([
-            'nombre_completo' => $request->nombre_completo ?? $usuario->nombre_completo,
-            'email' => $request->email ?? $usuario->email,
-            'password' => $request->password ? bcrypt($request->password) : $usuario->password,
-        ]);
+        $ausencia->update($request->all());
 
-        return redirect()->route('usuarios.index')->with('success', 'Usuario actualizado exitosamente.');
+        return redirect()->route('ausencias.index')->with('success', 'Ausencia actualizada exitosamente.');
     }
 
-    public function destroy(Usuarios $usuario)
+    public function destroy(Ausencia $ausencia)
     {
-        $usuario->delete();
+        $ausencia->delete();
 
-        return redirect()->route('usuarios.index')->with('success', 'Usuario eliminado exitosamente.');
-    }
+        return redirect()->route('ausencias.index')->with('success', 'Ausencia eliminada exitosamente.');
+}
 }

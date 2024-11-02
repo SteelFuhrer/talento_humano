@@ -7,6 +7,7 @@ use App\Http\Controllers\EmpleadoController;
 use App\Http\Controllers\CtipoesController;
 use App\Http\Controllers\CtiporetrasoController;
 use App\Http\Controllers\DepartamentoController;
+use App\Http\Controllers\EntradasalidaController;
 use App\Http\Controllers\HorarioController;
 
 /*

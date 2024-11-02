@@ -1,12 +1,13 @@
-@extends('layouts.app')
-
+@extends('home')
 @section('content')
-<div class="container">
-    <h1>Horarios</h1>
-    <a href="{{ route('horarios.create') }}" class="btn btn-success btn-sm" title="Nuevo Registro"><i class="fa-solid fa-circle-plus"></i> Crear Horario</a>
+<div class="content" style="margin-left: 20px">
+    <h2>Gestión de horarios</h2>
     <div class="card card-outline card-primary">
         <div class="card-header">
-            <h3 class="card-title"><b>Listado de Horarios</b></h3>
+            <h3 class="card-title"><b>Listado de horarios</b></h3>
+            <div class="card-tools">
+            <a href="{{ route('horarios.create') }}" class="btn btn-success btn-sm" title="Nuevo Registro"><i class="fa-solid fa-circle-plus"></i> Nuevo</a>
+            </div>
         </div>
         <div class="card-body">
             <div class="table-responsive">
