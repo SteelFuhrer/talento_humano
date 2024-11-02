@@ -36,3 +36,5 @@ Route::resource('ctipoes', CtipoesController::class);
 Route::resource('ctiporetraso', CtiporetrasoController::class);
 Route::resource('departamento', DepartamentoController::class);
 Route::resource('horarios', HorarioController::class);
+Route::get('/asistencia', [EntradasalidaController::class, 'showAsistenciaForm'])->name('asistencia.form');
+Route::post('/asistencia', [EntradasalidaController::class, 'registrarAsistencia'])->name('asistencia.registrar');
