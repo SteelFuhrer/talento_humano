@@ -7,7 +7,7 @@ use App\Http\Controllers\EmpleadoController;
 use App\Http\Controllers\CtipoesController;
 use App\Http\Controllers\CtiporetrasoController;
 use App\Http\Controllers\DepartamentoController;
-use App\Http\Controllers\EntradasalidaController;
+use App\Http\Controllers\HorarioController;
 
 /*
 |--------------------------------------------------------------------------
@@ -20,7 +20,6 @@ use App\Http\Controllers\EntradasalidaController;
 |
 */
 
-
 Route::get('/', function () {
     return view('welcome');
 });
@@ -31,12 +30,8 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 
 Route::resource('ausencias', AusenciaController::class);
 Route::resource('empleados', EmpleadoController::class);
-Route::resource('cmotivopases',CmotivopaseController::class);
+Route::resource('cmotivopases', CmotivopaseController::class);
 Route::resource('ctipoes', CtipoesController::class);
 Route::resource('ctiporetraso', CtiporetrasoController::class);
 Route::resource('departamento', DepartamentoController::class);
-Route::get('/asistencia', [EntradasalidaController::class, 'showAsistenciaForm'])->name('asistencia.form');
-Route::post('/asistencia', [EntradasalidaController::class, 'registrarAsistencia'])->name('asistencia.registrar');
-
-
-
+Route::resource('horarios', HorarioController::class);
