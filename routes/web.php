@@ -6,6 +6,7 @@ use App\Http\Controllers\CmotivopaseController;
 use App\Http\Controllers\EmpleadoController;
 use App\Http\Controllers\CtipoesController;
 use App\Http\Controllers\CtiporetrasoController;
+use App\Http\Controllers\DashboardController;
 
 /*
 |--------------------------------------------------------------------------
@@ -32,3 +33,8 @@ Route::resource('empleados', EmpleadoController::class);
 Route::resource('cmotivopases',CmotivopaseController::class);
 Route::resource('ctipoes', CtipoesController::class);
 Route::resource('ctiporetraso', CtiporetrasoController::class);
+
+//ruta para el dashboard
+Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
+
+
