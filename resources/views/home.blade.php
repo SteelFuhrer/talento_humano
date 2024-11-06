@@ -341,7 +341,26 @@ scratch. This page gets rid of all links and provides the needed markup only.
     <div class="content">
       <div class="container-fluid">
           @yield('content')  <!-- Aquí se insertará el contenido de otras vistas -->
+          <!-- PENDIENTE SEGUIR CON EL DASHBOARD 10/30/2024 -->
+<div id="dashboard-container" class="dashboard-container">
+    @php
+        $totalEmpleados = App\Models\Empleado::count();
+    @endphp
+    @include('dashboard', ['totalEmpleados' => $totalEmpleados])
+    </div>
+<!-- PENDIENTE SEGUIR CON EL DASHBOARD 10/30/2024 -->
+
+<!-- ESCONDER DASHBOARD-->
+
+
+
+<!-- ESCONDER DASHBOARD-->
+
+
+
+
       </div>
+      
   </div>
 
   </div>
@@ -374,6 +393,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
 <script src="{{ asset('plugins/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
 <!-- AdminLTE App -->
 <script src="{{ asset('dist/js/adminlte.min.js') }}"></script>
+
 <!-- DataTables  & Plugins -->
 <script src="{{asset('plugins/datatables/jquery.dataTables.min.js')}}"></script>
 <script src="{{asset('plugins/datatables-bs4/js/dataTables.bootstrap4.min.js')}}"></script>
@@ -387,6 +407,11 @@ scratch. This page gets rid of all links and provides the needed markup only.
 <script src="{{asset('plugins/datatables-buttons/js/buttons.html5.min.js')}}"></script>
 <script src="{{asset('plugins/datatables-buttons/js/buttons.print.min.js')}}"></script>
 <script src="{{asset('plugins/datatables-buttons/js/buttons.colVis.min.js')}}"></script>
+
+
+
+
+
 </body>
 <script>
 
@@ -412,4 +437,6 @@ scratch. This page gets rid of all links and provides the needed markup only.
               toastr.success("{{ session('success') }}", "Success");
       @endif
   </script>
+
 </html>
+
