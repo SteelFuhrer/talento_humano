@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
+use App\Models\Empleado;
 
 use Illuminate\Http\Request;
 
@@ -23,7 +24,8 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('home');
+        $totalEmpleados = Empleado::count(); 
+        return view('home')->with('content', view('dashboard.index', compact('totalEmpleados')));
     }
     
 }

@@ -13,7 +13,7 @@ class DashboardController extends Controller
        $totalEmpleados = Empleado::count(); 
         
        // Pass the variable to the dashboard view
-       return view('dashboard', compact('totalEmpleados'));
+       return view('dashboard.index', compact('totalEmpleados'));
     
     }
 }
