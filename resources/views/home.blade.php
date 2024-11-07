@@ -20,7 +20,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
   <!-- jQuery -->
   <script src="{{ asset('plugins/jquery/jquery.min.js') }}"></script>
 
-  
+
   <!-- Data tables -->
   <link rel="stylesheet" href="{{asset('plugins/datatables-bs4/css/dataTables.bootstrap4.min.css')}}">
   <link rel="stylesheet" href="{{asset('plugins/datatables-responsive/css/responsive.bootstrap4.min.css')}}">
@@ -278,7 +278,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                 </a>
               </li>
               <li class="nav-item">
-                <a href="#" class="nav-link">
+                <a href="trabextralaboral" class="nav-link">
                     <i class="fa-solid fa-business-time"></i>
                   <p>Gestión Horas Extra</p>
                 </a>
@@ -427,7 +427,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
               "showMethod": "fadeIn",
               "hideMethod": "fadeOut"
           };
-  
+
       @if (session('success'))
               toastr.success("{{ session('success') }}", "Success");
       @endif

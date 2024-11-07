@@ -16,4 +16,9 @@ class Empleado extends Model
     protected $primaryKey = 'ci';
     public $incrementing = true;
     protected $keyType = 'int';
+
+    public function trabextralaborales()
+    {
+        return $this->hasMany(Trabextralaboral::class, 'ci', 'ci');
+    }
 }
