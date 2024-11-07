@@ -6,6 +6,9 @@ use App\Http\Controllers\CmotivopaseController;
 use App\Http\Controllers\EmpleadoController;
 use App\Http\Controllers\CtipoesController;
 use App\Http\Controllers\CtiporetrasoController;
+use App\Http\Controllers\UserController;
+use App\Http\Controllers\Auth\RegisterController;
+
 
 use App\Http\Controllers\DepartamentoController;
 use App\Http\Controllers\EntradasalidaController;
@@ -32,6 +35,7 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('register', [RegisterController::class, 'showRegistrationForm'])->name('register');
 
 Route::resource('ausencias', AusenciaController::class);
 Route::resource('empleados', EmpleadoController::class);
@@ -43,7 +47,9 @@ Route::resource('departamento', DepartamentoController::class);
 Route::resource('horarios', HorarioController::class);
 Route::get('/asistencia', [EntradasalidaController::class, 'showAsistenciaForm'])->name('asistencia.form');
 Route::post('/asistencia', [EntradasalidaController::class, 'registrarAsistencia'])->name('asistencia.registrar');
-
+Route::resource('users', UserController::class);
+Route::get('/configuracion/{user}', [UserController::class, 'config'])->name('configuracion');
+Route::put('/configuracion/{user}', [UserController::class, 'config_update'])->name('update_user'); 
 
 //ruta para el dashboard
 Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');

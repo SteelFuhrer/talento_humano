@@ -25,6 +25,12 @@ scratch. This page gets rid of all links and provides the needed markup only.
   <link rel="stylesheet" href="{{asset('plugins/datatables-bs4/css/dataTables.bootstrap4.min.css')}}">
   <link rel="stylesheet" href="{{asset('plugins/datatables-responsive/css/responsive.bootstrap4.min.css')}}">
   <link rel="stylesheet" href="{{asset('plugins/datatables-buttons/css/buttons.bootstrap4.min.css')}}">
+
+  <!-- Toastr -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/2.1.4/toastr.min.css" integrity="sha512-6S2HWzVFxruDlZxI3sXOZZ4/eJ8AcxkQH1+JjSe/ONCEqR9L4Ysq5JdT5ipqtzU7WHalNwzwBv+iE51gNHJNqQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/2.1.4/toastr.min.js" integrity="sha512-lbwH47l/tPXJYG9AcFNoJaTMhGvYWhVM9YI43CT+uteTRRaiLCui8snIgyAN8XWgNjNhCqlAUdzZptso6OCoFQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
 </head>
 <body class="hold-transition sidebar-mini">
 <div class="wrapper">
@@ -79,7 +85,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
             <i class="fa-solid fa-user"></i>
         </a>
         <div class="dropdown-menu dropdown-menu-sm dropdown-menu-right">
-            <a href="#" class="dropdown-item">
+            <a href="{{ route('configuracion', ['user' => Auth::id()]) }}" class="dropdown-item">
                 <div class="media">
                     <div class="media-body">
                       <h3 class="dropdown-item-title" >
@@ -148,7 +154,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
   <aside class="main-sidebar sidebar-dark-primary elevation-4">
     <!-- Brand Logo -->
     <a href="/" class="brand-link">
-      <img src="dist/img/Logo.png" alt="Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
+      <img src="{{asset('dist/img/Logo.png')}}" alt="Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
       <span class="brand-text font-weight-light">Talento Humano</span>
     </a>
 
@@ -160,7 +166,9 @@ scratch. This page gets rid of all links and provides the needed markup only.
           <img src="dist/img/user9-160x160.jpg" class="img-circle elevation-2" alt="User Image">
         </div>
         <div class="info">
-          <a href="#" class="d-block"> {{ Auth::user()->name }}</a>
+          <a href="#" class="d-block"> 
+            {{ Auth::user()->empleado->nombre }} {{ Auth::user()->empleado->apellido }}
+          </a>
         </div>
       </div>
 
@@ -182,7 +190,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
           <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
           <li class="nav-item">
-            <a href="#" class="nav-link active">
+            <a href="/dashboard" class="nav-link active">
                 <i class="nav-icon fas fa-tachometer-alt"></i>
               <p>
                 Tablero
@@ -251,6 +259,12 @@ scratch. This page gets rid of all links and provides the needed markup only.
               </p>
             </a>
             <ul class="nav nav-treeview">
+              <li class="nav-item">
+                <a href="/users" class="nav-link">
+                  <i class="fa-solid fa-arrows-down-to-people"></i>
+                  <p>Gestión de usuarios</p>
+                </a>
+              </li>
               <li class="nav-item">
                 <a href="/empleados" class="nav-link">
                     <i class="fa-solid fa-users-gear"></i>
@@ -341,27 +355,8 @@ scratch. This page gets rid of all links and provides the needed markup only.
     <div class="content">
       <div class="container-fluid">
           @yield('content')  <!-- Aquí se insertará el contenido de otras vistas -->
-          <!-- PENDIENTE SEGUIR CON EL DASHBOARD 10/30/2024 -->
-<div id="dashboard-container" class="dashboard-container">
-    @php
-        $totalEmpleados = App\Models\Empleado::count();
-    @endphp
-    @include('dashboard', ['totalEmpleados' => $totalEmpleados])
-    </div>
-<!-- PENDIENTE SEGUIR CON EL DASHBOARD 10/30/2024 -->
-
-<!-- ESCONDER DASHBOARD-->
-
-
-
-<!-- ESCONDER DASHBOARD-->
-
-
-
-
       </div>
-      
-  </div>
+    </div>
 
   </div>
   <!-- /.content-wrapper -->

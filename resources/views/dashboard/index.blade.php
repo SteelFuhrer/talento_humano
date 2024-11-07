@@ -1,3 +1,5 @@
+@extends('home')
+@section('content')
 <div class="container">
     <div class="row">
         <!-- First Block: Total Employees -->
@@ -45,5 +47,4 @@
         </div>
     </div>
 </div>
-
-
+@endsection
