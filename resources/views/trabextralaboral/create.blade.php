@@ -15,6 +15,10 @@
         </div>
         @endif
         <div class="form-group">
+            <label for="ci">Id Empleado</label>
+            <input type="text" name="ci" class="form-control" required>
+        </div>
+        <div class="form-group">
             <label for="descripciontrab">Descripcion del Trabajo</label>
             <input type="text" name="descripciontrab" class="form-control" required>
         </div>

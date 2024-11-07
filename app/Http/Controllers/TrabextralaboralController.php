@@ -45,4 +45,21 @@ class TrabextralaboralController extends Controller
 
         return redirect()->route('trabextralaboral.index')->with('success', 'Trabajo Extra Laboral eliminado exitosamente.');
     }
+
+    public function edit(Trabextralaboral $trabextralaboral)
+    {
+        return view('trabextralaboral.edit', compact('trabextralaboral'));
+    }
+
+    public function update(Request $request, Trabextralaboral $trabextralaboral)
+    {
+        $request->validate([
+            'descripciontrab' => 'required|string|max:255|min:5',
+        ]);
+
+        $trabextralaboral->update($request->all());
+
+        return redirect()->route('trabextralaboral.index')->with('success', 'Trabajo Extralaboral actualizado exitosamente.');
+    }
+
 }
