@@ -15,6 +15,7 @@ use App\Http\Controllers\EntradasalidaController;
 use App\Http\Controllers\HorarioController;
 use App\Http\Controllers\TrabextralaboralController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\HorarioAsignadoController;
 
 /*
 |--------------------------------------------------------------------------
@@ -44,6 +45,8 @@ Route::resource('ctiporetraso', CtiporetrasoController::class);
 Route::resource('departamento', DepartamentoController::class);
 Route::resource('horarios', HorarioController::class);
 Route::resource('trabextralaboral', TrabextralaboralController::class);
+Route::resource('horarioasignado', HorarioAsignadoController::class);
+
 Route::post('/asistencia', [EntradasalidaController::class, 'registrarAsistencia'])->name('asistencia.registrar');
 Route::get('/asistencia', [EntradasalidaController::class, 'showAsistenciaForm'])->name('asistencia.form');
 Route::resource('users', UserController::class);

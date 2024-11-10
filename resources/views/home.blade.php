@@ -165,11 +165,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
         <div class="image">
           <img src="dist/img/user9-160x160.jpg" class="img-circle elevation-2" alt="User Image">
         </div>
-        <div class="info">
-          <a href="#" class="d-block"> 
-            {{ Auth::user()->empleado->nombre }} {{ Auth::user()->empleado->apellido }}
-          </a>
-        </div>
+        
       </div>
 
       <!-- SidebarSearch Form -->
@@ -272,7 +268,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                 </a>
               </li>
               <li class="nav-item">
-                <a href="" class="nav-link">
+                <a href="/horarioasignado" class="nav-link">
                     <i class="fa-solid fa-calendar-days"></i>
                   <p>Gestión de Horarios</p>
                 </a>
