@@ -38,8 +38,8 @@
                     <label for="CausaHorario">Causa del Horario</label>
                     <input type="text" name="CausaHorario" class="form-control" value="{{ old('CausaHorario', $horarioasignado->CausaHorario) }}" required>
                 </div>
-                <button type="submit" class="btn btn-primary">Actualizar</button>
             </form>
+            <button type="submit" class="btn btn-primary">Actualizar</button>
             <button type="button" id="volver" class="btn btn-secondary" onclick="window.location.href='{{ route('horarioasignado.index') }}'">
                 <i class="fa-solid fa-circle-left"></i> Regresar
             </button>

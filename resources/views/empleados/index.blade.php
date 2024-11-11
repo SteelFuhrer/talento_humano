@@ -30,7 +30,7 @@
                                     <td><?php echo $count; ?></td>
                                     <td>{{ $empleado->nombre.' '.$empleado->apellido }}</td>
                                     <td >{{ $empleado->correoelectronico }}</td>
-                                    <td >{{ $empleado->iddpto }}</td>
+                                    <td >{{ $empleado->nombredpto }}</td>
                                     <td style="width:140px;">
                                         <a href="{{ route('empleados.show', ['empleado' => $empleado->ci]) }}" class="btn btn-info" title="Ver registro"><i class="fa-solid fa-eye"></i></a>
                                         <a href="{{ route('empleados.edit', ['empleado' => $empleado->ci]) }}" class="btn btn-warning" title="Modificar registro"><i class="fa-solid fa-pen-to-square"></i></a>

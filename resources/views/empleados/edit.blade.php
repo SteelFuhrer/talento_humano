@@ -72,8 +72,15 @@
                     <input type="text" id="estatura" name="estatura" class="form-control" value="{{ old('estatura', $empleado->estatura) }}" required>
                 </div>
                 <div class="form-group">
-                    <label for="content">Departamento:</label>
-                    <input type="text" id="iddpto" name="iddpto" class="form-control" value="{{ old('iddpto', $empleado->iddpto) }}">
+                    <label for="iddpto">Departamento:</label>
+                    <select name="iddpto" id="iddpto" class="form-control" required>
+                        <option value="">Seleccione un departamento</option>
+                        @foreach ($departamentos as $departamento)
+                            <option value="{{ $departamento->iddpto }}" {{ old('iddpto', $departamento->iddpto) == $empleado->iddpto ? 'selected' : '' }}>
+                                {{ $departamento->nombredpto }}
+                            </option>
+                        @endforeach
+                    </select>
                 </div>
         </div>
         <div class="card-footer">

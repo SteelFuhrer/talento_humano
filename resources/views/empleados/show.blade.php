@@ -17,7 +17,7 @@
             <p><strong>Estado Civil:</strong> {{ $empleado->estcivil}}</p>
             <p><strong>Color Cabello:</strong> {{ $empleado->colorpelo}}</p>
             <p><strong>Estatura:</strong> {{ $empleado->estatura}}</p>
-            <p><strong>Departamento:</strong> {{ $empleado->iddpto}}</p>
+            <p><strong>Departamento:</strong> {{ $empleado->nombredpto}}</p>
         </div>
     <div class="card-footer">
         <a href="{{ route('empleados.index') }}" class="btn btn-secondary"><i class="fa-solid fa-circle-left"></i> Volver</a>

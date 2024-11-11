@@ -3,19 +3,30 @@
 namespace App\Http\Controllers;
 
 use App\Models\Empleado;
+use App\Models\Departamento;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class EmpleadoController extends Controller
 {
     public function index()
     {
-        $empleados = Empleado::all();
+        $empleados = DB::select("
+        SELECT 
+            a.*,
+            (select nombredpto from departamento b where a.iddpto=b.iddpto) as nombredpto
+        FROM 
+            empleados a
+        WHERE deleted_at is null");
+    
         return view('empleados.index', compact('empleados'));
+
     }
 
     public function create()
     {
-        return view('empleados.create');
+        $departamentos = Departamento::all(); // Obtener todos los departamentos
+        return view('empleados.create', compact('departamentos'));
     }
 
     public function store(Request $request)
@@ -32,6 +43,7 @@ class EmpleadoController extends Controller
             'estcivil' => 'required|string|max:50',
             'colorpelo' => 'required|string|max:50',
             'estatura' => 'required|string|max:50',
+            'iddpto' => 'required|integer|exists:departamento,iddpto',
         ]);
 
         Empleado::create($request->all());
@@ -41,12 +53,24 @@ class EmpleadoController extends Controller
 
     public function show(Empleado $empleado)
     {
+        
+        $empleado = DB::select("
+        SELECT 
+            a.*,
+            (select nombredpto from departamento b where a.iddpto=b.iddpto) as nombredpto
+        FROM 
+            empleados a
+        WHERE ci=?", [$empleado->ci]);
+
+        $empleado = $empleado[0] ?? null;
+
         return view('empleados.show', compact('empleado'));
     }
 
     public function edit(Empleado $empleado)
     {
-        return view('empleados.edit', compact('empleado'));
+        $departamentos = Departamento::all();
+        return view('empleados.edit', compact('empleado', 'departamentos'));
     }
 
     public function update(Request $request, Empleado $empleado)
@@ -63,6 +87,7 @@ class EmpleadoController extends Controller
             'estcivil' => 'required|string|max:50',
             'colorpelo' => 'required|string|max:50',
             'estatura' => 'required|string|max:50',
+            'iddpto' => 'required|integer|exists:departamento,iddpto',
         ]);
 
         $empleado->update($request->all());
