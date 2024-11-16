@@ -13,6 +13,11 @@ class Empleado extends Model
     protected $fillable = ['nombre', 'apellido','apellido2', 'sexo','direccionparticular','lugarnacimiento','telefonomovil',
     'correoelectronico','estcivil','colorpelo','estatura', 'iddpto'];
 
+    public function getNombreCompletoAttribute()
+    {
+        return $this->nombre . ' ' . $this->apellido;
+    }
+
     protected $primaryKey = 'ci';
     public $incrementing = true;
     protected $keyType = 'int';

@@ -16,6 +16,7 @@ use App\Http\Controllers\HorarioController;
 use App\Http\Controllers\TrabextralaboralController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\HorarioAsignadoController;
+use App\Http\Controllers\RetrasoController;
 
 /*
 |--------------------------------------------------------------------------
@@ -54,3 +55,7 @@ Route::get('/configuracion/{user}', [UserController::class, 'config'])->name('co
 Route::put('/configuracion/{user}', [UserController::class, 'config_update'])->name('update_user'); 
 //ruta para el dashboard
 Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
+
+//Route::get('/asistencia', [EntradasalidaController::class,'showAsistenciaForm'])->name('asistencia.form');
+//Route::post('/asistencia', [EntradasalidaController::class, 'registrarAsistencia'])->name('asistencia.registrar');
+Route::resource('retraso', RetrasoController::class);
