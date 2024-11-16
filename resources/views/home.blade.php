@@ -45,7 +45,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
 
       <!-- Agregar el botón aquí -->
       <li class="nav-item d-none d-sm-inline-block">
-        <a href="" class="btn btn-primary nav-link">Registrar mi asistencia</a>
+        <a href="{{ route('asistencia.form') }}" class="btn btn-primary nav-link">Registrar mi asistencia</a>
       </li>
     </ul>
 
@@ -302,7 +302,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                 </a>
               </li>
               <li class="nav-item">
-                <a href="#" class="nav-link">
+                <a href="retraso" class="nav-link">
                     <i class="fa-solid fa-person-running"></i>
                   <p>Retrasos</p>
                 </a>
