@@ -12,4 +12,10 @@ class Ausencia extends Model
     protected $keyType = 'integer';
 
     protected $fillable = ['tipoausencia'];
+
+    public function ausenciasEmpleado()
+    {
+        return $this->hasMany(EmpleadoAusencia::class, 'IdAusencia', 'IdAusencia');
+    }
+
 }
