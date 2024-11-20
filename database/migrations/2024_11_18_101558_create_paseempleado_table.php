@@ -13,16 +13,17 @@ return new class extends Migration
     {
         Schema::create('paseempleado', function (Blueprint $table) {
             $table->id('idpaseempleado');
-            $table->unsignedBigInteger('ci');
+            $table->integer('ci')->unsigned();
             $table->date('fecha');
             $table->dateTime('hsalida');
             $table->dateTime('hentrada');
             $table->string('lugar',255);
-            $table->unsignedBigInteger('id_motivopase');
-            $table->unsignedBigInteger('cijefe');
+            $table->integer('id_motivopase')->unsigned();
+            $table->integer('cijefe')->unsigned();
             $table->timestamps();
 
             $table->foreign('ci')->references('ci')->on('empleados')->onDelete('cascade');
+            $table->foreign('id_motivopase')->references('id_motivopase')->on('cmotivopase')->onDelete('cascade');
             $table->foreign('cijefe')->references('ci')->on('empleados')->onDelete('cascade');
         });
     }
