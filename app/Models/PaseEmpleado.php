@@ -26,6 +26,10 @@ class PaseEmpleado extends Model
     {
         return $this->belongsTo(Empleado::class, 'ci', 'ci');
     }
+    public function motivoPase()
+    {
+        return $this->belongsTo(CMotivoPase::class, 'id_motivopase', 'id_motivopase');
+    }
     public function jefe()
     {
         return $this->belongsTo(Empleado::class, 'cijefe', 'ci');
