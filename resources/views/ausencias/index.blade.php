@@ -27,7 +27,7 @@
                                 <tr>
                                     <td><?php echo $count; ?></td>
                                     <td>{{ $ausencia->tipoausencia }}</td>
-                                    <td style="width:120px;">
+                                    <td style="width:90px;">
                                         <a href="{{ route('ausencias.edit', ['ausencia' => $ausencia->id_ausencia]) }}" class="btn btn-warning" title="Modificar registro"><i class="fa-solid fa-pen-to-square"></i></a>
                                         <form action="{{ route('ausencias.destroy', ['ausencia' => $ausencia->id_ausencia]) }}" method="POST" style="display:inline;" onsubmit="return confirm('Está seguro de eliminar este registro?');">
                                             @csrf

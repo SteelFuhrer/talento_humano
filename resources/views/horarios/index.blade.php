@@ -26,7 +26,7 @@
                             <td>{{ $horario->nombre }}</td>
                             <td>{{ date('g:i A', strtotime($horario->hora_entrada)) }}</td>
                             <td>{{ date('g:i A', strtotime($horario->hora_salida)) }}</td>
-                            <td style="width:140px;">
+                            <td style="width:90px;">
                                 <a href="{{ route('horarios.edit', $horario->id) }}" class="btn btn-warning" title="Modificar registro"><i class="fa-solid fa-pen-to-square"></i></a>
                                 <form action="{{ route('horarios.destroy', $horario->id) }}" method="POST" style="display:inline;" onsubmit="return confirm('Está seguro de eliminar este registro?');">
                                     @csrf
