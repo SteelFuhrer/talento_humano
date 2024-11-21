@@ -17,6 +17,7 @@ use App\Http\Controllers\TrabextralaboralController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\HorarioAsignadoController;
 use App\Http\Controllers\RetrasoController;
+use App\Http\Controllers\PaseEmpleadoController;
 
 /*
 |--------------------------------------------------------------------------
@@ -47,6 +48,7 @@ Route::resource('departamento', DepartamentoController::class);
 Route::resource('horarios', HorarioController::class);
 Route::resource('trabextralaboral', TrabextralaboralController::class);
 Route::resource('horarioasignado', HorarioAsignadoController::class);
+Route::resource('paseempleado', PaseEmpleadoController::class);
 
 Route::post('/asistencia', [EntradasalidaController::class, 'registrarAsistencia'])->name('asistencia.registrar');
 Route::get('/asistencia', [EntradasalidaController::class, 'showAsistenciaForm'])->name('asistencia.form');
