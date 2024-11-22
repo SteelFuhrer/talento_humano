@@ -39,17 +39,29 @@
             </div>
 
             <div class="form-group">
-                <label for="id_motivopase">Motivo del Pase (Ingrese ID)</label>
-                <input type="number" name="id_motivopase" id="id_motivopase" class="form-control" required>
-                <small class="form-text text-muted">Ingrese el ID del motivo del pase</small>
+                <label for="id_motivopase">Motivo del Pase</label>
+                <select name="id_motivopase" id="id_motivopase" class="form-control" required>
+                    <option value="">Seleccione un tipo de pase</option>
+                    @foreach($motivospase as $motivo)
+                    <option value="{{ $motivo->id_motivopase }}">{{ $motivo->motivopase }}</option>
+                @endforeach
+                </select>
             </div>
 
             <div class="form-group">
                 <label for="cijefe">CI Jefe</label>
-                <input type="number" name="cijefe" id="cijefe" class="form-control" required>
+                <select name="cijefe" id="cijefe" class="form-control" required>
+                    <option value="">Seleccione el Jefe</option>
+                    @foreach ($empleados as $empleado)
+                <option value="{{ $empleado->ci }}">{{ $empleado->nombre_completo }}</option>
+            @endforeach
+                </select>
             </div>
 
             <button type="submit" class="btn btn-success">Guardar</button>
+            <button type="button" id="volver" class="btn btn-secondary" onclick="window.location.href='{{ route('paseempleado.index') }}'">
+                <i class="fa-solid fa-circle-left"></i> Volver
+            </button>
         </form>
     </div>
 @endsection

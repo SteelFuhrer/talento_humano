@@ -164,7 +164,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
         <div class="image">
           <img src="dist/img/user9-160x160.jpg" class="img-circle elevation-2" alt="User Image">
         </div>
-        
+
       </div>
 
       <!-- SidebarSearch Form -->
@@ -305,7 +305,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                 </a>
               </li>
               <li class="nav-item">
-                <a href="" class="nav-link">
+                <a href="/paseempleado" class="nav-link">
                     <i class="fa-solid fa-user-shield"></i>
                   <p>Pases</p>
                 </a>

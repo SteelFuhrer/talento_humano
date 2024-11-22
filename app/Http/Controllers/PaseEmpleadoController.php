@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\PaseEmpleado;
 use Illuminate\Http\Request;
+use App\Models\Cmotivopase;
+use App\Models\Empleado;
 
 class PaseEmpleadoController extends Controller
 {
@@ -11,13 +13,17 @@ class PaseEmpleadoController extends Controller
     public function index()
     {
         $pases = PaseEmpleado::all();
+        $empleados=Empleado::all();
+        $motivospase = Cmotivopase::all();
         return view('paseempleado.index', compact('pases'));
     }
 
     // Mostrar el formulario para crear un nuevo pase
     public function create()
     {
-        return view('paseempleado.create');
+        $motivospase = Cmotivopase::all();
+        $empleados=Empleado::all();
+        return view('paseempleado.create',compact('motivospase','empleados'));
     }
 
     // Almacenar un nuevo pase
@@ -81,6 +87,7 @@ class PaseEmpleadoController extends Controller
     public function show($id)
     {
         $paseempleado = PaseEmpleado::findOrFail($id);
+        $motivospase = Cmotivopase::all();
         return view('paseempleado.show', compact('paseempleado'));
     }
 }
