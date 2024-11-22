@@ -17,6 +17,7 @@ use App\Http\Controllers\TrabextralaboralController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\HorarioAsignadoController;
 use App\Http\Controllers\RetrasoController;
+use App\Http\Controllers\PaseEmpleadoController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -35,6 +36,8 @@ Route::resource('ctiporetraso', CtiporetrasoController::class)->middleware('can:
 Route::resource('departamento', DepartamentoController::class)->middleware('can:ausencias.index');
 Route::resource('horarios', HorarioController::class)->middleware('can:ausencias.index');
 Route::resource('trabextralaboral', TrabextralaboralController::class);
+Route::resource('horarioasignado', HorarioAsignadoController::class);
+Route::resource('paseempleado', PaseEmpleadoController::class);
 Route::resource('horarioasignado', HorarioAsignadoController::class)->middleware('can:empleados.index');
 
 Route::post('/asistencia', [EntradasalidaController::class, 'registrarAsistencia'])->name('asistencia.registrar');
