@@ -200,7 +200,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
           </li>
 
           <!-- Inicia auxiliares -->
-        @can('ausencias.index')  
+        @can('ausencias.index')
           <li class="nav-item">
             <a href="#" class="nav-link active">
                 <i class="fa-solid fa-gear"></i>
@@ -242,7 +242,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
               </li>
             </ul>
           </li>
-        @endcan  
+        @endcan
           <!-- Fin auxiliares -->
 
         @can('ausencias.index')
@@ -255,7 +255,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
         @endcan
 
           <!-- Inicia empleados -->
-        @can('empleados.index')  
+        @can('empleados.index')
           <li class="nav-item">
             <a href="#" class="nav-link active">
                 <i class="fa-solid fa-users"></i>
@@ -265,7 +265,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
               </p>
             </a>
             <ul class="nav nav-treeview">
-              @can('ausencias.index')  
+              @can('ausencias.index')
               <li class="nav-item">
                 <a href="/users" class="nav-link">
                   <i class="fa-solid fa-arrows-down-to-people"></i>
@@ -293,7 +293,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
               </li>
             </ul>
           </li>
-        @endcan  
+        @endcan
           <!-- Fin empleados -->
 
           <!-- Inicia control asistencia -->
@@ -320,15 +320,12 @@ scratch. This page gets rid of all links and provides the needed markup only.
               </li>
               <li class="nav-item">
                 <a href="/paseempleado" class="nav-link">
-
-                <a href="#" class="nav-link">
-
                     <i class="fa-solid fa-user-shield"></i>
                   <p>Pases</p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="retraso" class="nav-link">
+                <a href="/retraso" class="nav-link">
                     <i class="fa-solid fa-person-running"></i>
                   <p>Retrasos</p>
                 </a>
