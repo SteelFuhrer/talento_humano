@@ -164,7 +164,13 @@ scratch. This page gets rid of all links and provides the needed markup only.
         <div class="image">
           <img src="dist/img/user9-160x160.jpg" class="img-circle elevation-2" alt="User Image">
         </div>
-
+        <div class="info">
+          @if (Auth::user()->empleado && Auth::user()->empleado->nombre && Auth::user()->empleado->apellido)
+              <a href="#" class="d-block">
+                  {{ Auth::user()->empleado->nombre }} {{ Auth::user()->empleado->apellido }}
+              </a>
+          @endif
+      </div>
       </div>
 
       <!-- SidebarSearch Form -->
@@ -194,6 +200,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
           </li>
 
           <!-- Inicia auxiliares -->
+        @can('ausencias.index')  
           <li class="nav-item">
             <a href="#" class="nav-link active">
                 <i class="fa-solid fa-gear"></i>
@@ -235,16 +242,20 @@ scratch. This page gets rid of all links and provides the needed markup only.
               </li>
             </ul>
           </li>
+        @endcan  
           <!-- Fin auxiliares -->
 
+        @can('ausencias.index')
           <li class="nav-item">
             <a href="/departamento" class="nav-link active">
                 <i class="fa-solid fa-people-group"></i>
               <p>Departamentos</p>
             </a>
           </li>
+        @endcan
 
           <!-- Inicia empleados -->
+        @can('empleados.index')  
           <li class="nav-item">
             <a href="#" class="nav-link active">
                 <i class="fa-solid fa-users"></i>
@@ -254,12 +265,14 @@ scratch. This page gets rid of all links and provides the needed markup only.
               </p>
             </a>
             <ul class="nav nav-treeview">
+              @can('ausencias.index')  
               <li class="nav-item">
                 <a href="/users" class="nav-link">
                   <i class="fa-solid fa-arrows-down-to-people"></i>
                   <p>Gestión de usuarios</p>
                 </a>
               </li>
+              @endcan
               <li class="nav-item">
                 <a href="/empleados" class="nav-link">
                     <i class="fa-solid fa-users-gear"></i>
@@ -280,6 +293,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
               </li>
             </ul>
           </li>
+        @endcan  
           <!-- Fin empleados -->
 
           <!-- Inicia control asistencia -->
@@ -306,6 +320,9 @@ scratch. This page gets rid of all links and provides the needed markup only.
               </li>
               <li class="nav-item">
                 <a href="/paseempleado" class="nav-link">
+
+                <a href="#" class="nav-link">
+
                     <i class="fa-solid fa-user-shield"></i>
                   <p>Pases</p>
                 </a>

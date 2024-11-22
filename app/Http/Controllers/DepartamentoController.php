@@ -34,7 +34,7 @@ class DepartamentoController extends Controller
     {
         $request->validate([
             'nombredpto' => 'required|string|max:255|min:3',
-            'cijdpto' => 'required|integer|exists:empleados,ci', // Validación para asegurar que el jefe existe
+            'cijdpto' => 'nullable|integer|exists:empleados,ci', // Validación para asegurar que el jefe existe
             'correoelectronicodpto' => 'required|string|email|max:255',
             'telefonodpto' => 'required|string|max:12',
         ]);

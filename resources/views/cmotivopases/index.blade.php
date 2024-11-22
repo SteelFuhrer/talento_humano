@@ -27,7 +27,7 @@
                                 <tr>
                                     <td><?php echo $count; ?></td>
                                     <td>{{ $cmotivopase->motivopase }}</td>
-                                    <td style="width:140px;">
+                                    <td style="width:90px;">
                                         <a href="{{ route('cmotivopases.edit', ['cmotivopase' => $cmotivopase->id_motivopase]) }}" class="btn btn-warning" title="Modificar registro"><i class="fa-solid fa-pen-to-square"></i></a>
                                         <form action="{{ route('cmotivopases.destroy', ['cmotivopase' => $cmotivopase->id_motivopase]) }}" method="POST" style="display:inline;" onsubmit="return confirm('Está seguro de eliminar este registro?');">
                                             @csrf

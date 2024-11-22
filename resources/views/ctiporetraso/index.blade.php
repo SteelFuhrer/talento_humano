@@ -27,7 +27,7 @@
                                 <tr>
                                     <td><?php echo $count; ?></td>
                                     <td>{{ $tipo->tipoderetraso }}</td>
-                                    <td style="width:140px;">
+                                    <td style="width:90px;">
                                         <a href="{{ route('ctiporetraso.edit', $tipo->idtiporetraso) }}" class="btn btn-warning" title="Modificar registro"><i class="fa-solid fa-pen-to-square"></i></a>
                                         <form action="{{ route('ctiporetraso.destroy', $tipo->idtiporetraso) }}" method="POST" style="display:inline;" onsubmit="return confirm('Está seguro de eliminar este registro?');">
                                             @csrf

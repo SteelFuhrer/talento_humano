@@ -13,7 +13,7 @@ return new class extends Migration
             $table->dropColumn('name');
             
             // añadir campo ci
-            $table->unsignedInteger('ci')->after('id');
+            $table->unsignedInteger('ci')->nullable()->after('id');
             $table->foreign('ci')->references('ci')->on('empleados')->onDelete('cascade');
         });
     }

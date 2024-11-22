@@ -11,7 +11,7 @@ return new class extends Migration
         Schema::create('departamento', function (Blueprint $table) {
             $table->id('iddpto');
             $table->string('nombredpto', 255);
-            $table->unsignedInteger('cijdpto'); // Clave foránea a 'empleados'
+            $table->unsignedInteger('cijdpto')->nullable(); // Clave foránea a 'empleados'
             $table->string('correoelectronicodpto', 255);
             $table->string('telefonodpto', 15);
             $table->timestamps();
