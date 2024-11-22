@@ -1,6 +1,13 @@
 @extends('home')
 
 @section('content')
+
+    <style>
+        .margen-inferior {
+        margin-bottom: 20px; /* Ajusta el valor según lo necesites */
+        margin-left: 10px;
+    }
+    </style>
     <div class="container">
         <h2>Editar Pase de Empleado</h2>
 
@@ -55,7 +62,10 @@
                 </select>
             </div>
 
-            <button type="submit" class="btn btn-primary">Actualizar</button>
+            <button type="submit" class="btn btn-primary margen-inferior">Actualizar</button>
+            <button type="button" id="volver" class="btn btn-secondary margen-inferior" onclick="window.location.href='{{ route('paseempleado.index') }}'">
+                <i class="fa-solid fa-circle-left"></i> Volver
+            </button>
         </form>
     </div>
 @endsection
