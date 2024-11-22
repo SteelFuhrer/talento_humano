@@ -9,22 +9,25 @@ use App\Models\Empleado;
 
 class PaseEmpleadoController extends Controller
 {
-    // Mostrar todos los registros de paseempleado
     public function index()
     {
         $pases = PaseEmpleado::all();
-        $empleados=Empleado::all();
+        $empleados = Empleado::all();  // Aquí ya tienes todos los empleados
         $motivospase = Cmotivopase::all();
-        return view('paseempleado.index', compact('pases'));
+    
+        return view('paseempleado.index', compact('pases', 'motivospase', 'empleados'));
     }
 
-    // Mostrar el formulario para crear un nuevo pase
     public function create()
     {
-        $motivospase = Cmotivopase::all();
-        $empleados=Empleado::all();
-        return view('paseempleado.create',compact('motivospase','empleados'));
+        // Obtener todos los empleados
+        $empleados = Empleado::all();
+        $motivospase = Cmotivopase::all(); // Si es necesario para el combobox de "Motivo del Pase"
+    
+        // Retornar la vista con los empleados y otros datos necesarios
+        return view('paseempleado.create', compact('empleados', 'motivospase'));
     }
+    
 
     // Almacenar un nuevo pase
     public function store(Request $request)
@@ -47,12 +50,19 @@ class PaseEmpleadoController extends Controller
         return redirect()->route('paseempleado.index')->with('success', 'Pase creado exitosamente.');
     }
 
-    // Mostrar el formulario para editar un pase
     public function edit($id)
     {
+        // Obtener el paseempleado que se va a editar
         $paseempleado = PaseEmpleado::findOrFail($id);
-        return view('paseempleado.edit', compact('paseempleado'));
+        
+        // Obtener todos los empleados y los motivos de pase
+        $empleados = Empleado::all();
+        $motivospase = Cmotivopase::all(); 
+    
+        // Retornar la vista con los datos necesarios
+        return view('paseempleado.edit', compact('paseempleado', 'empleados', 'motivospase'));
     }
+    
 
     // Actualizar un pase existente
     public function update(Request $request, $id)

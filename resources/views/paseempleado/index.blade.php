@@ -35,8 +35,22 @@
                         <td>{{ $pase->hsalida }}</td>
                         <td>{{ $pase->hentrada }}</td>
                         <td>{{ $pase->lugar }}</td>
-                        <td>{{ $pase->id_motivopase }}</td>
-                        <td>{{ $pase->cijefe }}</td>
+                        <td>
+                            @foreach ($motivospase as $motivo)
+                                @if ($motivo->id_motivopase == $pase->id_motivopase)
+                                    {{ $motivo->motivopase }} 
+                                @endif
+                            @endforeach
+                        </td>
+                          <!-- Buscar y mostrar el nombre del jefe asociado al cijefe -->
+                        <td>
+                            @foreach ($empleados as $empleado)
+                                @if ($empleado->ci == $pase->cijefe)
+                                    {{ $empleado->nombre }} <!-- Asegúrate de que la propiedad del nombre sea la correcta -->
+                                @endif
+                            @endforeach
+                        </td>
+
                         <td>
                             <a href="{{ route('paseempleado.edit', $pase->idpaseempleado) }}" class="btn btn-warning btn-sm">Editar</a>
                             <form action="{{ route('paseempleado.destroy', $pase->idpaseempleado) }}" method="POST" style="display:inline;">
