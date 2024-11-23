@@ -16,17 +16,7 @@ use App\Http\Controllers\TrabextralaboralController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\HorarioAsignadoController;
 use App\Http\Controllers\RetrasoController;
-
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider and all of them will
-| be assigned to the "web" middleware group. Make something great!
-|
-*/
+use App\Http\Controllers\PaseEmpleadoController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -35,17 +25,19 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-Route::get('register', [RegisterController::class, 'showRegistrationForm'])->name('register');
+Route::get('register', [RegisterController::class, 'showRegistrationForm'])->middleware('can:ausencias.index')->name('register');
 
-Route::resource('ausencias', AusenciaController::class);
-Route::resource('empleados', EmpleadoController::class);
-Route::resource('cmotivopases', CmotivopaseController::class);
-Route::resource('ctipoes', CtipoesController::class);
-Route::resource('ctiporetraso', CtiporetrasoController::class);
-Route::resource('departamento', DepartamentoController::class);
-Route::resource('horarios', HorarioController::class);
+Route::resource('ausencias', AusenciaController::class)->middleware('can:ausencias.index');
+Route::resource('empleados', EmpleadoController::class)->middleware('can:empleados.index');
+Route::resource('cmotivopases', CmotivopaseController::class)->middleware('can:ausencias.index');
+Route::resource('ctipoes', CtipoesController::class)->middleware('can:ausencias.index');
+Route::resource('ctiporetraso', CtiporetrasoController::class)->middleware('can:ausencias.index');
+Route::resource('departamento', DepartamentoController::class)->middleware('can:ausencias.index');
+Route::resource('horarios', HorarioController::class)->middleware('can:ausencias.index');
 Route::resource('trabextralaboral', TrabextralaboralController::class);
 Route::resource('horarioasignado', HorarioAsignadoController::class);
+Route::resource('paseempleado', PaseEmpleadoController::class);
+Route::resource('horarioasignado', HorarioAsignadoController::class)->middleware('can:empleados.index');
 
 Route::get('/empleadoausencia', [EmpleadoAusenciaController::class, 'index'])->name('empleadoausencia.index');
 Route::get('/empleadoausencia/create', [EmpleadoAusenciaController::class, 'create'])->name('empleadoausencia.create');
@@ -62,7 +54,7 @@ Route::get('/users/{user}', [UserController::class, 'rol'])->middleware('can:aus
 Route::put('/users/{user}', [UserController::class, 'rol_update'])->middleware('can:ausencias.index')->name('users.rol_update');
 
 Route::get('/asistencia', [EntradasalidaController::class, 'showAsistenciaForm'])->name('asistencia.form');
-Route::resource('users', UserController::class);
+Route::resource('users', UserController::class)->middleware('can:ausencias.index');
 Route::get('/configuracion/{user}', [UserController::class, 'config'])->name('configuracion');
 Route::put('/configuracion/{user}', [UserController::class, 'config_update'])->name('update_user');
 
