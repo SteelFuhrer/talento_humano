@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\User;
 use App\Models\Empleado;
+use Spatie\Permission\Models\Role;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rule;
@@ -47,7 +48,7 @@ class UserController extends Controller
 
         $user->save();
 
-        return redirect()->back()->with('success', 'Usuario registrado');
+        return redirect()->route('users.index')->with('success', 'Usuario registrado');
     }
 
     //******************************************** update a usuarios *****************************************/
@@ -96,7 +97,7 @@ class UserController extends Controller
     }
 
     public function config_update(Request $request, User $user)
-{
+    {
     // Verificar la contraseña actual ingresada
     if (!Hash::check($request->password_actual, $user->password)) {
         return redirect()->back()->withErrors(['password_actual' => 'La contraseña actual no coincide con nuestra base de datos.']);
@@ -123,6 +124,47 @@ class UserController extends Controller
     $user->update($data);
     
     return redirect()->route('dashboard')->with('success', 'Usuario actualizado');
-}
+    }
+
+  //******************************************** Roles de usuario **********************************************/
+  public function rol(User $user)
+  {
+    $userinf = DB::select("
+    SELECT
+        a.id,
+        (SELECT concat(nombre, ' ', apellido) FROM empleados b WHERE a.ci = b.ci) AS nombre,
+        a.email
+    FROM 
+        users a
+        where a.id=?", [$user->id]);
+
+    $user = $userinf[0] ?? null;
+    $roles = Role::all();
+    $userRoles = $user ? DB::table('model_has_roles')->where('model_id', $user->id)->pluck('role_id') : [];
+
+    return view('users.rol', compact('user', 'roles', 'userRoles'));
+  }
+
+  public function rol_update(Request $request, User $user)
+  {
+    // Validar que los roles fueron enviados
+    $request->validate([
+        'roles' => 'array|nullable', // Los roles deben ser un array, puede ser nulo si no se selecciona ninguno
+        'roles.*' => 'exists:roles,id', // Asegura que los roles existan en la tabla de roles
+    ]);
+
+    // Sincronizar los roles seleccionados con el usuario
+    if ($request->has('roles')) {
+        // El usuario puede tener múltiples roles, por lo que se usa 'sync' para asociar los roles seleccionados
+        $user->roles()->sync($request->roles); // Esto actualizará los roles del usuario, eliminando los que no están seleccionados
+    } else {
+        // Si no se seleccionaron roles, se pueden eliminar todos los roles del usuario
+        $user->roles()->sync([]); // Elimina todos los roles del usuario
+    }
+
+    // Redirigir o devolver respuesta después de la actualización
+    return redirect()->route('users.index')->with('success', 'Roles asignados correctamente.');
+  }
+
 
 }

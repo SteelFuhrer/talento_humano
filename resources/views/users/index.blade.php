@@ -30,6 +30,7 @@
                                     <td>{{ $user->nombre ?? 'No asignado' }}</td>
                                     <td >{{ $user->email}}</td>
                                     <td style="width:140px;">
+                                        <a href="{{ route('users.rol', ['user' => $user->id]) }}" class="btn btn-info" title="Asignar rol"><i class="fa-solid fa-user-tag"></i></a>
                                         <a href="{{ route('users.edit', ['user' => $user->id]) }}" class="btn btn-warning" title="Modificar registro"><i class="fa-solid fa-pen-to-square"></i></a>
                                         <form action="{{ route('users.destroy', ['user' => $user->id]) }}" method="POST" style="display:inline;" onsubmit="return confirm('Está seguro de eliminar este registro?');">
                                             @csrf

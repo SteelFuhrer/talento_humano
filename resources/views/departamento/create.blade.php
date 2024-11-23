@@ -30,7 +30,7 @@
                 </div>
                 <div class="form-group">
                     <label for="cijdpto">Jefe del Departamento:</label>
-                    <select name="cijdpto" id="cijdpto" class="form-control" required>
+                    <select name="cijdpto" id="cijdpto" class="form-control">
                         <option value="">Seleccione un jefe</option>
                         @foreach ($empleados as $empleado)
                             <option value="{{ $empleado->ci }}" {{ old('cijdpto') == $empleado->ci ? 'selected' : '' }}>

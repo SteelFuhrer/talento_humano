@@ -38,6 +38,7 @@ Route::resource('trabextralaboral', TrabextralaboralController::class);
 Route::resource('horarioasignado', HorarioAsignadoController::class);
 Route::resource('paseempleado', PaseEmpleadoController::class);
 Route::resource('horarioasignado', HorarioAsignadoController::class)->middleware('can:empleados.index');
+<<<<<<< HEAD
 
 Route::get('/empleadoausencia', [EmpleadoAusenciaController::class, 'index'])->name('empleadoausencia.index');
 Route::get('/empleadoausencia/create', [EmpleadoAusenciaController::class, 'create'])->name('empleadoausencia.create');
@@ -58,6 +59,8 @@ Route::resource('users', UserController::class)->middleware('can:ausencias.index
 Route::get('/configuracion/{user}', [UserController::class, 'config'])->name('configuracion');
 Route::put('/configuracion/{user}', [UserController::class, 'config_update'])->name('update_user');
 
+Route::get('/users/{user}', [UserController::class, 'rol'])->middleware('can:ausencias.index')->name('users.rol');
+Route::put('/users/{user}', [UserController::class, 'rol_update'])->middleware('can:ausencias.index')->name('users.rol_update');
 //ruta para el dashboard
 Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
 
