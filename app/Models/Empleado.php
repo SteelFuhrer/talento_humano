@@ -32,4 +32,9 @@ class Empleado extends Model
     {
        return $this->belongsTo(Departamento::class, 'iddpto', 'iddpto');
     }
+
+    public function empleadoausencia(){
+        return $this->hasMany(EmpleadoAusencia::class, 'CI', 'CI');
+    }
+
 }

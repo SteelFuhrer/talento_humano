@@ -8,8 +8,7 @@ use App\Http\Controllers\CtipoesController;
 use App\Http\Controllers\CtiporetrasoController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\Auth\RegisterController;
-
-
+use App\Http\Controllers\EmpleadoAusenciaController;
 use App\Http\Controllers\DepartamentoController;
 use App\Http\Controllers\EntradasalidaController;
 use App\Http\Controllers\HorarioController;
@@ -39,12 +38,27 @@ Route::resource('trabextralaboral', TrabextralaboralController::class);
 Route::resource('horarioasignado', HorarioAsignadoController::class);
 Route::resource('paseempleado', PaseEmpleadoController::class);
 Route::resource('horarioasignado', HorarioAsignadoController::class)->middleware('can:empleados.index');
+<<<<<<< HEAD
 
-Route::post('/asistencia', [EntradasalidaController::class, 'registrarAsistencia'])->name('asistencia.registrar');
+Route::get('/empleadoausencia', [EmpleadoAusenciaController::class, 'index'])->name('empleadoausencia.index');
+Route::get('/empleadoausencia/create', [EmpleadoAusenciaController::class, 'create'])->name('empleadoausencia.create');
+Route::post('/empleadoausencia', [EmpleadoAusenciaController::class, 'store'])->name('empleadoausencia.store');
+
+Route::get('/empleadoausencia/{IdEmpleadoAusencia}/edit', [EmpleadoAusenciaController::class, 'edit'])->name('empleadoausencia.edit');
+
+Route::put('/empleadoausencia/{IdEmpleadoAusencia}', [EmpleadoAusenciaController::class, 'update'])->name('empleadoausencia.update');
+
+Route::delete('/empleadoausencia/{empleadoAusencia}', [EmpleadoAusenciaController::class, 'destroy'])->name('empleadoausencia.destroy');
+Route::put('/empleadoausencia/approve', [EmpleadoAusenciaController::class, 'approve'])->name('empleadoausencia.approve');
+
+Route::get('/users/{user}', [UserController::class, 'rol'])->middleware('can:ausencias.index')->name('users.rol');
+Route::put('/users/{user}', [UserController::class, 'rol_update'])->middleware('can:ausencias.index')->name('users.rol_update');
+
 Route::get('/asistencia', [EntradasalidaController::class, 'showAsistenciaForm'])->name('asistencia.form');
 Route::resource('users', UserController::class)->middleware('can:ausencias.index');
 Route::get('/configuracion/{user}', [UserController::class, 'config'])->name('configuracion');
 Route::put('/configuracion/{user}', [UserController::class, 'config_update'])->name('update_user');
+
 Route::get('/users/{user}', [UserController::class, 'rol'])->middleware('can:ausencias.index')->name('users.rol');
 Route::put('/users/{user}', [UserController::class, 'rol_update'])->middleware('can:ausencias.index')->name('users.rol_update');
 //ruta para el dashboard

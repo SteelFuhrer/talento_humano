@@ -9,7 +9,7 @@
             <label for="CI">CI</label>
             <select class="form-control" id="CI" name="CI" required>
                 @foreach($empleados as $empleado)
-                    <option value="{{ $empleado->ci }}">{{ $empleado->ci }} - {{ $empleado->nombre }}</option>
+                    <option value="{{ $empleado->ci }}">{{ $empleado->nombre }}</option>
                 @endforeach
             </select>
         </div>
@@ -17,7 +17,7 @@
             <label for="IdAusencia">IdAusencia</label>
             <select class="form-control" id="IdAusencia" name="IdAusencia" required>
                 @foreach($ausencias as $ausencia)
-                    <option value="{{ $ausencia->id_ausencia }}">{{ $ausencia->id_ausencia }} - {{ $ausencia->tipoausencia }}</option>
+                    <option value="{{ $ausencia->id_ausencia }}">{{ $ausencia->tipoausencia }}</option>
                 @endforeach
             </select>
         </div>
