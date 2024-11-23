@@ -38,7 +38,6 @@ Route::resource('trabextralaboral', TrabextralaboralController::class);
 Route::resource('horarioasignado', HorarioAsignadoController::class);
 Route::resource('paseempleado', PaseEmpleadoController::class);
 Route::resource('horarioasignado', HorarioAsignadoController::class)->middleware('can:empleados.index');
-<<<<<<< HEAD
 
 Route::get('/empleadoausencia', [EmpleadoAusenciaController::class, 'index'])->name('empleadoausencia.index');
 Route::get('/empleadoausencia/create', [EmpleadoAusenciaController::class, 'create'])->name('empleadoausencia.create');
