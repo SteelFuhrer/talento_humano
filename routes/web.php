@@ -58,6 +58,9 @@ Route::put('/empleadoausencia/{IdEmpleadoAusencia}', [EmpleadoAusenciaController
 Route::delete('/empleadoausencia/{empleadoAusencia}', [EmpleadoAusenciaController::class, 'destroy'])->name('empleadoausencia.destroy');
 Route::put('/empleadoausencia/approve', [EmpleadoAusenciaController::class, 'approve'])->name('empleadoausencia.approve');
 
+Route::get('/users/{user}', [UserController::class, 'rol'])->middleware('can:ausencias.index')->name('users.rol');
+Route::put('/users/{user}', [UserController::class, 'rol_update'])->middleware('can:ausencias.index')->name('users.rol_update');
+
 Route::get('/asistencia', [EntradasalidaController::class, 'showAsistenciaForm'])->name('asistencia.form');
 Route::resource('users', UserController::class);
 Route::get('/configuracion/{user}', [UserController::class, 'config'])->name('configuracion');
