@@ -7,9 +7,7 @@
         <div class="col-md-12">
             <div class="card card-outline card-primary">
                 <div class="card-header">
-                    <div class="card-tools">
-                        <a href="{{ route('empleadoausencia.create') }}" class="btn btn-success btn-sm" title="Nueva Solicitud"><i class="fa-solid fa-circle-plus"></i> Nueva</a>
-                    </div>
+                    <h3 class="card-title"><b>Listado de Solicitudes de Ausencia</b></h3>
                 </div>
                 <div class="card-body">
                     <div class="table-responsive">
@@ -17,25 +15,38 @@
                             <thead>
                                 <tr>
                                     <th>#</th>
-                                    <th>Nombre del Empleado</th>
                                     <th>Fecha Inicio</th>
                                     <th>Fecha Fin</th>
                                     <th>Ausencia</th>
                                     <th>Estado</th>
+                                    <th>Acciones</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                <?php $count=1; ?>
-                                @foreach($empleadoAusencias as $empleadoAusencia)
+                                @foreach($empleadoAusencias as $index => $empleadoAusencia)
                                 <tr>
-                                    <td><?php echo $count; ?></td>
-                                    <td>{{ $empleadoAusencia->empleado->nombre }}</td>
-                                    <td>{{ $empleadoAusencia->FInicio}}</td>
+                                    <td>{{ $index + 1 }}</td>
+                                    <td>{{ $empleadoAusencia->FInicio }}</td>
                                     <td>{{ $empleadoAusencia->FFin }}</td>
                                     <td>{{ $empleadoAusencia->ausencia->tipoausencia }}</td>
-                                    <td>{{ $empleadoAusencia->estado ? 'Aprobado' : 'No Aprobado' }}</td>
-                               </tr>
-                                <?php $count++; ?>
+                                    <td>
+                                        <form action="{{ route('adminausencia.update', $empleadoAusencia->IdEmpleadoAusencia) }}" method="POST" style="display:inline;">
+                                            @csrf
+                                            @method('PUT')
+                                            <input type="hidden" name="estado" value="0">
+                                            <input type="checkbox" name="estado" value="1" onchange="this.form.submit()" {{ $empleadoAusencia->estado == 1 ? 'checked' : '' }}>
+                                        </form>
+                                    </td>
+                                    <td style="width:140px;">
+                                        <a href="{{ route('adminausencia.show', $empleadoAusencia->IdEmpleadoAusencia) }}" class="btn btn-info" title="Ver registro"><i class="fa-solid fa-eye"></i></a>
+                                        <a href="{{ route('adminausencia.edit', $empleadoAusencia->IdEmpleadoAusencia) }}" class="btn btn-warning" title="Modificar registro"><i class="fa-solid fa-pen-to-square"></i></a>
+                                        <form action="{{ route('adminausencia.destroy', $empleadoAusencia->IdEmpleadoAusencia) }}" method="POST" style="display:inline;" onsubmit="return confirm('Está seguro de eliminar esta solicitud?');">
+                                            @csrf
+                                            @method('DELETE')
+                                            <button type="submit" class="btn btn-danger" title="Eliminar registro"><i class="fa-solid fa-trash"></i></button>
+                                        </form>
+                                    </td>
+                                </tr>
                                 @endforeach
                             </tbody>
                         </table>
