@@ -20,7 +20,7 @@ class EmpleadoAusenciaController extends Controller
         $empleados = Empleado::all();
         $ausencias = Ausencia::all();
 
-        return view('empleadoausencia.empleado.create', compact('empleados', 'ausencias'));
+        return view('empleadoausencia.create', compact('empleados', 'ausencias'));
     }
 
     public function store(Request $request)
@@ -31,7 +31,6 @@ class EmpleadoAusenciaController extends Controller
             'FInicio' => 'required|date',
             'FFin' => 'required|date',
             'CJefe' => 'required|integer',
-            // Si `estado` es booleano, lo añadimos a la validación:
             'estado' => 'nullable|boolean',
         ]);
 
@@ -57,7 +56,6 @@ class EmpleadoAusenciaController extends Controller
             'FInicio' => 'required|date',
             'FFin' => 'required|date',
             'CJefe' => 'required|integer',
-            // Añadir validación para el campo `estado` como booleano
             'estado' => 'required|boolean',
         ]);
 
@@ -78,12 +76,9 @@ class EmpleadoAusenciaController extends Controller
     public function approve($id)
     {
         $empleadoAusencia = EmpleadoAusencia::findOrFail($id);
-
-        // Ahora el estado se manejará como booleano, no como cadena de texto.
-        $empleadoAusencia->estado = true; // O false si lo desearas para "desaprobar"
+        $empleadoAusencia->estado = true;
         $empleadoAusencia->save();
 
         return redirect()->route('empleadoausencia.index')->with('success', 'Solicitud de ausencia aprobada exitosamente.');
     }
 }
-

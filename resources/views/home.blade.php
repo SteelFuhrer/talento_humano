@@ -318,6 +318,12 @@ scratch. This page gets rid of all links and provides the needed markup only.
                   <p>Ausencias</p>
                 </a>
               </li>
+                 <li class="nav-item">
+                <a href="/adminausencia" class="nav-link">
+                    <i class="fa-solid fa-user-xmark"></i>
+                  <p>Confirmar Ausencias</p>
+                </a>
+              </li>
               <li class="nav-item">
                 <a href="/paseempleado" class="nav-link">
                     <i class="fa-solid fa-user-shield"></i>
