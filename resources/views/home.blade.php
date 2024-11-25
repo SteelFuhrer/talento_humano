@@ -280,7 +280,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="#" class="nav-link">
+                <a href="{{ route('asistencia.form') }}" class="nav-link">
                     <i class="fa-solid fa-user-plus"></i>
                     <p>Asistencia</p>
                 </a>
