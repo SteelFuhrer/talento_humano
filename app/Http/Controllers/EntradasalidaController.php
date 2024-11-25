@@ -89,6 +89,7 @@ class EntradasalidaController extends Controller
                 Carbon::parse($fechaInicio)->startOfDay(),
                 Carbon::parse($fechaFin)->endOfDay()
             ])
+            ->orderBy('fechahora', 'asc')
             ->get();
 
         return view('asistencia.resultados', compact('asistencias', 'fechaInicio', 'fechaFin'));

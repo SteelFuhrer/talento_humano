@@ -138,10 +138,16 @@ scratch. This page gets rid of all links and provides the needed markup only.
 
     <!-- Sidebar -->
     <div class="sidebar">
-      <!-- Sidebar user panel (optional) -->
       <div class="user-panel mt-3 pb-3 mb-3 d-flex">
         <div class="image">
-          <img src="dist/img/user9-160x160.jpg" class="img-circle elevation-2" alt="User Image">
+          @php
+              $sexo = auth()->user()->empleado->sexo ?? 'M';  // M por defecto
+          @endphp
+          
+          <img 
+              src="{{ asset($sexo == 'F' ? 'dist/img/female_avatar.png' : 'dist/img/male_avatar.png') }}" 
+              class="img-circle elevation-2" 
+              alt="User Image">
         </div>
         <div class="info">
           @if (Auth::user()->empleado && Auth::user()->empleado->nombre && Auth::user()->empleado->apellido)
