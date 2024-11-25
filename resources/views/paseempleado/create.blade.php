@@ -1,6 +1,13 @@
 @extends('home')
 
 @section('content')
+
+    <style>
+        .margen-inferior {
+        margin-bottom: 20px; /* Ajusta el valor según lo necesites */
+        margin-left: 10px;
+    }
+    </style>
     <div class="container">
         <h2>Nuevo Pase de Empleado</h2>
 
@@ -43,23 +50,25 @@
                 <select name="id_motivopase" id="id_motivopase" class="form-control" required>
                     <option value="">Seleccione un tipo de pase</option>
                     @foreach($motivospase as $motivo)
-                    <option value="{{ $motivo->id_motivopase }}">{{ $motivo->motivopase }}</option>
-                @endforeach
+                        <option value="{{ $motivo->id_motivopase }}">{{ $motivo->motivopase }}</option>
+                    @endforeach
                 </select>
             </div>
 
             <div class="form-group">
                 <label for="cijefe">CI Jefe</label>
                 <select name="cijefe" id="cijefe" class="form-control" required>
-                    <option value="">Seleccione el Jefe</option>
-                    @foreach ($empleados as $empleado)
-                <option value="{{ $empleado->ci }}">{{ $empleado->nombre_completo }}</option>
-            @endforeach
+                    <option value="">Seleccione un jefe</option>
+                    @foreach($empleados as $empleado)
+                        <option value="{{ $empleado->ci }}" {{ old('cijefe') == $empleado->ci ? 'selected' : '' }}>
+                            {{ $empleado->nombre }} <!-- Asegúrate de que 'nombre' sea el campo correcto -->
+                        </option>
+                    @endforeach
                 </select>
             </div>
-
-            <button type="submit" class="btn btn-success">Guardar</button>
-            <button type="button" id="volver" class="btn btn-secondary" onclick="window.location.href='{{ route('paseempleado.index') }}'">
+            
+            <button type="submit" class="btn btn-success margen-inferior">Guardar</button>
+            <button type="button" id="volver" class="btn btn-secondary margen-inferior" onclick="window.location.href='{{ route('paseempleado.index') }}'">
                 <i class="fa-solid fa-circle-left"></i> Volver
             </button>
         </form>

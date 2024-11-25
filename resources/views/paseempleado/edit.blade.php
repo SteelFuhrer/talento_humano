@@ -1,6 +1,13 @@
 @extends('home')
 
 @section('content')
+
+    <style>
+        .margen-inferior {
+        margin-bottom: 20px; /* Ajusta el valor según lo necesites */
+        margin-left: 10px;
+    }
+    </style>
     <div class="container">
         <h2>Editar Pase de Empleado</h2>
 
@@ -33,17 +40,32 @@
                 <input type="text" name="lugar" id="lugar" class="form-control" value="{{ $paseempleado->lugar }}" required>
             </div>
 
-            <div class="form-group">
-                <label for="id_motivopase">Motivo del Pase (Ingrese ID)</label>
-                <input type="number" name="id_motivopase" id="id_motivopase" class="form-control" value="{{ $paseempleado->id_motivopase }}" required>
+           <div class="form-group">
+                <label for="id_motivopase">Motivo del Pase</label>
+                <select name="id_motivopase" id="id_motivopase" class="form-control" required>
+                    <option value="">Seleccione un tipo de pase</option>
+                    @foreach($motivospase as $motivo)
+                        <option value="{{ $motivo->id_motivopase }}">{{ $motivo->motivopase }}</option>
+                    @endforeach
+                </select>
             </div>
 
             <div class="form-group">
                 <label for="cijefe">CI Jefe</label>
-                <input type="number" name="cijefe" id="cijefe" class="form-control" value="{{ $paseempleado->cijefe }}" required>
+                <select name="cijefe" id="cijefe" class="form-control" required>
+                    <option value="">Seleccione un jefe</option>
+                    @foreach($empleados as $empleado)
+                        <option value="{{ $empleado->ci }}" {{ $empleado->ci == $paseempleado->cijefe ? 'selected' : '' }}>
+                            {{ $empleado->nombre }} <!-- Asegúrate de que 'nombre' sea el campo correcto -->
+                        </option>
+                    @endforeach
+                </select>
             </div>
 
-            <button type="submit" class="btn btn-primary">Actualizar</button>
+            <button type="submit" class="btn btn-primary margen-inferior">Actualizar</button>
+            <button type="button" id="volver" class="btn btn-secondary margen-inferior" onclick="window.location.href='{{ route('paseempleado.index') }}'">
+                <i class="fa-solid fa-circle-left"></i> Volver
+            </button>
         </form>
     </div>
 @endsection
