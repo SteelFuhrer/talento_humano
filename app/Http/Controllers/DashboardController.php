@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 namespace App\Http\Controllers;
 
@@ -7,36 +7,22 @@ use App\Models\Empleado;
 use App\Models\Departamento;
 use App\Models\EmpleadoAusencia;
 use App\Models\Retraso;
-use Carbon\Carbon;
 
 class DashboardController extends Controller
 {
     public function index()
     {
-        // Fecha actual
-        $hoy = Carbon::today();
+        // Obtener el total de empleados
+        $totalEmpleados = Empleado::count(); 
+        
+        // Obtener el total de departamentos
+        $totalDepartamentos = Departamento::count();
 
-        // Datos generales
-        $totales = [
-            'empleados' => Empleado::count(),
-            'departamentos' => Departamento::count(),
-            'ausenciasHoy' => $this->contarRegistrosPorFecha(EmpleadoAusencia::class, $hoy),
-            'retrasosHoy' => $this->contarRegistrosPorFecha(Retraso::class, $hoy),
-        ];
+        $totalEmpleadoausencia = EmpleadoAusencia::count();
 
-        // Pasar datos al dashboard
-        return view('dashboard.index', compact('totales'));
-    }
-
-    /**
-     * Contar registros por fecha.
-     *
-     * @param string $modelo
-     * @param \Carbon\Carbon $fecha
-     * @return int
-     */
-    private function contarRegistrosPorFecha($modelo, $fecha)
-    {
-        return $modelo::whereDate('created_at', $fecha)->count();
+        $totalRetraso = Retraso::count();
+        
+        // Pasar las variables a la vista del dashboard
+        return view('dashboard.index', compact('totalEmpleados', 'totalDepartamentos','totalEmpleadoausencia', 'totalRetraso' ));
     }
 }

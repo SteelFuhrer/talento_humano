@@ -52,7 +52,7 @@
         <div class="col-md-3">
             <div class="card shadow-sm border-0 text-white bg-primary">
                 <i class="fas fa-users fa-3x"></i> <!-- Ícono -->
-                <h5 class="card-title">{{ $totales['empleados'] }}</h5> <!-- Número -->
+                <h5 class="card-title">{{ $totalEmpleados }}</h5> <!-- Número -->
                 <p class="card-text">Total Empleados</p> <!-- Texto -->
             </div>
         </div>
@@ -61,7 +61,7 @@
         <div class="col-md-3">
             <div class="card shadow-sm border-0 text-white bg-info">
                 <i class="fas fa-building fa-3x"></i> <!-- Ícono -->
-                <h5 class="card-title">{{ $totales['departamentos'] }}</h5> <!-- Número -->
+                <h5 class="card-title">{{ $totalDepartamentos }}</h5> <!-- Número -->
                 <p class="card-text">Total Departamentos</p> <!-- Texto -->
             </div>
         </div>
@@ -70,7 +70,7 @@
         <div class="col-md-3">
             <div class="card shadow-sm border-0 text-white bg-warning">
                 <i class="fas fa-calendar-times fa-3x"></i> <!-- Ícono -->
-                <h5 class="card-title">{{ $totales['ausenciasHoy'] }}</h5> <!-- Número -->
+                <h5 class="card-title">{{ $totalEmpleadoausencia }}</h5> <!-- Número -->
                 <p class="card-text">Ausencias Hoy</p> <!-- Texto -->
             </div>
         </div>
@@ -79,7 +79,7 @@
         <div class="col-md-3">
             <div class="card shadow-sm border-0 text-white bg-danger">
                 <i class="fas fa-clock fa-3x"></i> <!-- Ícono -->
-                <h5 class="card-title">{{ $totales['retrasosHoy'] }}</h5> <!-- Número -->
+                <h5 class="card-title">{{ $totalRetraso }}</h5> <!-- Número -->
                 <p class="card-text">Retrasos Hoy</p> <!-- Texto -->
             </div>
         </div>
