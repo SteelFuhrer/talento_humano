@@ -20,45 +20,78 @@ class EntradasalidaController extends Controller
         $ci = auth()->user()->empleado->ci ?? null;
     
         // Obtener el último registro de asistencia desde la base de datos
-        $ultimoRegistro = Entradasalida::where('ci', $ci)
-                            ->latest('fechahora')
-                            ->with('tipoAsistencia') // Cargar la relación tipoAsistencia
-                            ->first();
-    
-        return view('asistencia.asistencia', compact('tiposAsistencia', 'ultimoRegistro'));
+        $ultimoRegistro = Entradasalida::with('tipoAsistencia')
+        ->where('ci', $ci)
+        ->latest('fechahora')
+        ->first();
+
+        // Fecha de hoy
+        $fechaHoy = Carbon::today();
+
+        // Registros del día actual
+        $asistenciasHoy = Entradasalida::with('tipoAsistencia')
+            ->where('ci', $ci)
+            ->whereDate('fechahora', $fechaHoy)
+            ->get();
+   
+        return view('asistencia.asistencia', compact('tiposAsistencia', 'ultimoRegistro', 'asistenciasHoy'));
     }
 
     public function registrarAsistencia(Request $request)
     {
-        // Obtener el CI desde el formulario
         $ci = $request->input('ci');
         $tipoAsistencia = $request->input('tipo_asistencia');
     
-        // Validar que el CI exista en la tabla empleados
         $empleado = DB::table('empleados')->where('ci', $ci)->first();
         if (!$empleado) {
             return redirect()->back()->with('error', 'El CI ingresado no corresponde a ningún empleado.');
         }
+
+        // Obtener el último registro de asistencia
+        $ultimoRegistro = Entradasalida::where('ci', $ci)
+        ->latest('fechahora')
+        ->first();
+
+        // Verificar si el tipo de asistencia es el mismo que el del último registro
+        if ($ultimoRegistro && $ultimoRegistro->idtipoes == $tipoAsistencia) {
+        return redirect()->back()->with('error', 'No puedes registrar el mismo tipo de asistencia consecutivo.');
+        }
     
-        // Guardar el registro de asistencia
         $registro = new Entradasalida();
         $registro->ci = $ci;
         $registro->fechahora = Carbon::now();
-        $registro->idtipoes = $tipoAsistencia; // Usar directamente el ID del tipo de asistencia
+        $registro->idtipoes = $tipoAsistencia; 
         $registro->save();
     
-        // Obtener el último registro actualizado del empleado
         $ultimoRegistro = Entradasalida::where('ci', $ci)
             ->latest('fechahora')
             ->first();
     
-        // Mensaje de éxito
         $mensaje = 'Asistencia registrada correctamente a las ' . $registro->fechahora->format('H:i d/m/Y');
     
-        return redirect()->back()->with([
-            'status' => $mensaje,
-            'ultimoRegistro' => $ultimoRegistro
-        ]);
+        return redirect()->back()->with(['success' => $mensaje,'ultimoRegistro' => $ultimoRegistro]);
     }
-    
+
+    public function buscarPorFecha(Request $request)
+    {
+        if (!auth()->check()) {
+            return redirect()->route('login')->with('error', 'Por favor, inicie sesión para buscar registros.');
+        }
+
+        $ci = auth()->user()->empleado->ci ?? null;
+
+        $fechaInicio = $request->input('fecha_inicio');
+        $fechaFin = $request->input('fecha_fin') ?? $fechaInicio;
+
+        $asistencias = Entradasalida::with('tipoAsistencia')
+            ->where('ci', $ci)
+            ->whereBetween('fechahora', [
+                Carbon::parse($fechaInicio)->startOfDay(),
+                Carbon::parse($fechaFin)->endOfDay()
+            ])
+            ->get();
+
+        return view('asistencia.resultados', compact('asistencias', 'fechaInicio', 'fechaFin'));
+    }
+
 }    

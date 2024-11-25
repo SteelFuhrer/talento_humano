@@ -20,6 +20,6 @@ class Entradasalida extends Model
     // Definir la relación con el modelo Ctipoes
     public function tipoAsistencia()
     {
-        return $this->belongsTo(Ctipoes::class, 'idtipoes');
+        return $this->belongsTo(Ctipoes::class, 'idtipoes', 'id');
     }
 }
