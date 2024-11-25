@@ -4,12 +4,6 @@
     <div class="container">
         <h2>Listado de Pases de Empleados</h2>
 
-        @if(session('success'))
-            <div class="alert alert-success">
-                {{ session('success') }}
-            </div>
-        @endif
-
         <a href="{{ route('paseempleado.create') }}" class="btn btn-primary">Nuevo Pase</a>
 
         <table class="table table-bordered mt-3">

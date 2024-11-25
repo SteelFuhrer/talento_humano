@@ -17,6 +17,8 @@ use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\HorarioAsignadoController;
 use App\Http\Controllers\RetrasoController;
 use App\Http\Controllers\PaseEmpleadoController;
+use App\Http\Controllers\AdminAusenciaController;
+
 
 Route::get('/', function () {
     return view('welcome');
@@ -35,35 +37,27 @@ Route::resource('ctiporetraso', CtiporetrasoController::class)->middleware('can:
 Route::resource('departamento', DepartamentoController::class)->middleware('can:ausencias.index');
 Route::resource('horarios', HorarioController::class)->middleware('can:ausencias.index');
 Route::resource('trabextralaboral', TrabextralaboralController::class);
-Route::resource('horarioasignado', HorarioAsignadoController::class);
 Route::resource('paseempleado', PaseEmpleadoController::class);
 Route::resource('horarioasignado', HorarioAsignadoController::class)->middleware('can:empleados.index');
-<<<<<<< HEAD
 
-Route::get('/empleadoausencia', [EmpleadoAusenciaController::class, 'index'])->name('empleadoausencia.index');
-Route::get('/empleadoausencia/create', [EmpleadoAusenciaController::class, 'create'])->name('empleadoausencia.create');
-Route::post('/empleadoausencia', [EmpleadoAusenciaController::class, 'store'])->name('empleadoausencia.store');
+Route::resource('empleadoausencia', EmpleadoAusenciaController::class);
+Route::resource('adminausencia', AdminAusenciaController::class)->middleware('can:ausencias.index');
 
-Route::get('/empleadoausencia/{IdEmpleadoAusencia}/edit', [EmpleadoAusenciaController::class, 'edit'])->name('empleadoausencia.edit');
-
-Route::put('/empleadoausencia/{IdEmpleadoAusencia}', [EmpleadoAusenciaController::class, 'update'])->name('empleadoausencia.update');
-
-Route::delete('/empleadoausencia/{empleadoAusencia}', [EmpleadoAusenciaController::class, 'destroy'])->name('empleadoausencia.destroy');
-Route::put('/empleadoausencia/approve', [EmpleadoAusenciaController::class, 'approve'])->name('empleadoausencia.approve');
-
-Route::get('/users/{user}', [UserController::class, 'rol'])->middleware('can:ausencias.index')->name('users.rol');
-Route::put('/users/{user}', [UserController::class, 'rol_update'])->middleware('can:ausencias.index')->name('users.rol_update');
-
-Route::get('/asistencia', [EntradasalidaController::class, 'showAsistenciaForm'])->name('asistencia.form');
-Route::resource('users', UserController::class)->middleware('can:ausencias.index');
+//config users
 Route::get('/configuracion/{user}', [UserController::class, 'config'])->name('configuracion');
 Route::put('/configuracion/{user}', [UserController::class, 'config_update'])->name('update_user');
 
+//rutas users
+Route::resource('users', UserController::class)->middleware('can:ausencias.index');
 Route::get('/users/{user}', [UserController::class, 'rol'])->middleware('can:ausencias.index')->name('users.rol');
 Route::put('/users/{user}', [UserController::class, 'rol_update'])->middleware('can:ausencias.index')->name('users.rol_update');
+
 //ruta para el dashboard
 Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
 
-//Route::get('/asistencia', [EntradasalidaController::class,'showAsistenciaForm'])->name('asistencia.form');
-//Route::post('/asistencia', [EntradasalidaController::class, 'registrarAsistencia'])->name('asistencia.registrar');
+//asistencia
+Route::post('/asistencia', [EntradasalidaController::class, 'registrarAsistencia'])->name('asistencia.registrar');
+Route::get('/asistencia', [EntradasalidaController::class,'showAsistenciaForm'])->name('asistencia.form');
+Route::get('/asistencia/buscar', [EntradasalidaController::class, 'buscarPorFecha'])->name('asistencia.buscar');
+
 Route::resource('retraso', RetrasoController::class);

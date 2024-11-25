@@ -23,7 +23,6 @@ class EmpleadoAusencia extends Model
         return $this->belongsTo(Empleado::class, 'CI', 'ci');
     }
 
-    // Relación con el modelo Ausencia
     public function ausencia()
     {
         return $this->belongsTo(Ausencia::class, 'IdAusencia', 'id_ausencia');

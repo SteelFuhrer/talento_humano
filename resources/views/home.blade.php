@@ -50,33 +50,12 @@ scratch. This page gets rid of all links and provides the needed markup only.
 
       <!-- Agregar el botón aquí -->
       <li class="nav-item d-none d-sm-inline-block">
-        <a href="{{ route('asistencia.form') }}" class="btn btn-primary nav-link">Registrar mi asistencia</a>
+        <a href="{{ route('asistencia.form') }}" class="btn btn-primary">Registrar mi asistencia</a>
       </li>
     </ul>
 
     <!-- Right navbar links -->
     <ul class="navbar-nav ml-auto">
-      <!-- Navbar Search -->
-      <li class="nav-item">
-        <a class="nav-link" data-widget="navbar-search" href="#" role="button">
-          <i class="fas fa-search"></i>
-        </a>
-        <div class="navbar-search-block">
-          <form class="form-inline">
-            <div class="input-group input-group-sm">
-              <input class="form-control form-control-navbar" type="search" placeholder="Buscar" aria-label="Search">
-              <div class="input-group-append">
-                <button class="btn btn-navbar" type="submit">
-                  <i class="fas fa-search"></i>
-                </button>
-                <button class="btn btn-navbar" type="button" data-widget="navbar-search">
-                  <i class="fas fa-times"></i>
-                </button>
-              </div>
-            </div>
-          </form>
-        </div>
-      </li>
 
       <!-- Messages Dropdown Menu -->
       <li class="nav-item dropdown">
@@ -159,10 +138,16 @@ scratch. This page gets rid of all links and provides the needed markup only.
 
     <!-- Sidebar -->
     <div class="sidebar">
-      <!-- Sidebar user panel (optional) -->
       <div class="user-panel mt-3 pb-3 mb-3 d-flex">
         <div class="image">
-          <img src="dist/img/user9-160x160.jpg" class="img-circle elevation-2" alt="User Image">
+          @php
+              $sexo = auth()->user()->empleado->sexo ?? 'M';  // M por defecto
+          @endphp
+          
+          <img 
+              src="{{ asset($sexo == 'F' ? 'dist/img/female_avatar.png' : 'dist/img/male_avatar.png') }}" 
+              class="img-circle elevation-2" 
+              alt="User Image">
         </div>
         <div class="info">
           @if (Auth::user()->empleado && Auth::user()->empleado->nombre && Auth::user()->empleado->apellido)
@@ -171,18 +156,6 @@ scratch. This page gets rid of all links and provides the needed markup only.
               </a>
           @endif
       </div>
-      </div>
-
-      <!-- SidebarSearch Form -->
-      <div class="form-inline">
-        <div class="input-group" data-widget="sidebar-search">
-          <input class="form-control form-control-sidebar" type="search" placeholder="Buscar" aria-label="Buscar">
-          <div class="input-group-append">
-            <button class="btn btn-sidebar">
-              <i class="fas fa-search fa-fw"></i>
-            </button>
-          </div>
-        </div>
       </div>
 
       <!-- Sidebar Menu -->
@@ -307,15 +280,21 @@ scratch. This page gets rid of all links and provides the needed markup only.
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="#" class="nav-link">
+                <a href="{{ route('asistencia.form') }}" class="nav-link">
                     <i class="fa-solid fa-user-plus"></i>
                     <p>Asistencia</p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="#" class="nav-link">
+                <a href="/empleadoausencia" class="nav-link">
                     <i class="fa-solid fa-user-xmark"></i>
                   <p>Ausencias</p>
+                </a>
+              </li>
+                 <li class="nav-item">
+                <a href="/adminausencia" class="nav-link">
+                    <i class="fa-solid fa-user-xmark"></i>
+                  <p>Confirmar Ausencias</p>
                 </a>
               </li>
               <li class="nav-item">

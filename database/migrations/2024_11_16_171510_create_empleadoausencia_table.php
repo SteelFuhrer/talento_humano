@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('empleadoausencia', function (Blueprint $table) {
             $table->increments('IdEmpleadoAusencia');
             $table->integer('CI')->unsigned();
-            $table->integer('IdAusencia')->unsigned();
+            $table->bigInteger('IdAusencia')->unsigned();
             $table->date('FInicio');
             $table->date('FFin');
             $table->integer('CJefe')->unsigned();
