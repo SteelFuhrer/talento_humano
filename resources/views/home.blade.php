@@ -228,19 +228,25 @@ scratch. This page gets rid of all links and provides the needed markup only.
               <li class="nav-item">
                 <a href="/horarioasignado" class="nav-link">
                     <i class="fa-solid fa-calendar-days"></i>
-                  <p>Administrar de Horarios</p>
+                  <p>Asignar Horarios</p>
                 </a>
               </li>
               <li class="nav-item">
                 <a href="/trabextralaboral" class="nav-link">
                     <i class="fa-solid fa-business-time"></i>
-                  <p>Administrar Horas Extra</p>
+                  <p>Registrar Horas Extra</p>
                 </a>
               </li>
               <li class="nav-item">
                 <a href="{{ route('asistencias.hoy') }}" class="nav-link">
                     <i class="fa-solid fa-address-card"></i>
-                  <p> Administrar Asistencias</p>
+                  <p> Ver Asistencias</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="/adminausencia" class="nav-link">
+                  <i class="fa-solid fa-list"></i>
+                  <p> Ver Solicitudes Ausencias</p>
                 </a>
               </li>
             </ul>
@@ -261,31 +267,24 @@ scratch. This page gets rid of all links and provides the needed markup only.
               <li class="nav-item">
                 <a href="{{ route('asistencia.form') }}" class="nav-link">
                     <i class="fa-solid fa-user-plus"></i>
-                    <p>Asistencia</p>
+                    <p>Registrar Asistencia</p>
                 </a>
               </li>
               <li class="nav-item">
                 <a href="/empleadoausencia" class="nav-link">
                     <i class="fa-solid fa-user-xmark"></i>
-                  <p>Ausencias</p>
+                  <p>Solicitar Ausencia</p>
                 </a>
-              </li>
-                 <li class="nav-item">
-                <a href="/adminausencia" class="nav-link">
-                    <i class="fa-solid fa-user-xmark"></i>
-                  <p>Confirmar Ausencias</p>
-                </a>
-              </li>
               <li class="nav-item">
                 <a href="/paseempleado" class="nav-link">
                     <i class="fa-solid fa-user-shield"></i>
-                  <p>Pases</p>
+                  <p>Solicitar Pase Salida</p>
                 </a>
               </li>
               <li class="nav-item">
                 <a href="/retraso" class="nav-link">
                     <i class="fa-solid fa-person-running"></i>
-                  <p>Retrasos</p>
+                  <p>Justificar Retrasos</p>
                 </a>
               </li>
             </ul>

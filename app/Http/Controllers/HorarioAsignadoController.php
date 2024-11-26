@@ -10,10 +10,10 @@ use Illuminate\Http\Request;
 class HorarioAsignadoController extends Controller
 {
     public function index()
-{
-    $horarioasignado = HorarioAsignado::with(['empleado', 'horario'])->get();
-    return view('horarioasignado.index', compact('horarioasignado'));
-}
+    {
+        $horarioasignado = HorarioAsignado::with(['empleado', 'horario'])->get();
+        return view('horarioasignado.index', compact('horarioasignado'));
+    }
 
     public function create()
     {

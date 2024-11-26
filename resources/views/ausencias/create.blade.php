@@ -2,8 +2,11 @@
 
 @section('content')
 <div class="container">
-    <div class="card" style="margin: 10px; max-width: 1200px; margin: auto;">
-        <h2 class="card-header">Registrar tipo de ausencia</h2>
+    <h2 class="card-header">Registrar tipo de ausencia</h2>
+    <div class="card card-outline card-success" style="margin: 10px; max-width: 1200px; margin: auto;">
+        <div class="card-header">
+            <p><strong> Ingrese los datos </strong></p>
+        </div>
         <div class="card-body">
         <form action="{{ route('ausencias.store') }}" method="POST">
             @csrf

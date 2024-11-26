@@ -46,4 +46,10 @@ class Empleado extends Model
     {
         return $this->hasMany(EmpleadoAusencia::class, 'cjefe');
     }
+
+    public function horarioAsignado()
+    {
+        return $this->hasOne(HorarioAsignado::class, 'ci', 'ci');
+    }
+
 }
