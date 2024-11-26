@@ -37,4 +37,13 @@ class Empleado extends Model
         return $this->hasMany(EmpleadoAusencia::class, 'CI', 'CI');
     }
 
+    public function asistencias()
+    {
+        return $this->hasMany(EntradaSalida::class, 'ci', 'ci');
+    }
+
+    public function jefe()
+    {
+        return $this->hasMany(EmpleadoAusencia::class, 'cjefe');
+    }
 }

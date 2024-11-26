@@ -17,9 +17,18 @@ class Entradasalida extends Model
         'idtipoes',
     ];
 
+    protected $casts = [
+        'fechahora' => 'datetime',
+    ];
+
     // Definir la relación con el modelo Ctipoes
     public function tipoAsistencia()
     {
         return $this->belongsTo(Ctipoes::class, 'idtipoes', 'id');
+    }
+
+    public function empleado()
+    {
+        return $this->belongsTo(Empleado::class, 'ci', 'ci');
     }
 }

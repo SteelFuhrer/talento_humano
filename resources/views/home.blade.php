@@ -87,33 +87,6 @@ scratch. This page gets rid of all links and provides the needed markup only.
           </a>
         </div>
       </li>
-      <!-- Notifications Dropdown Menu -->
-      <li class="nav-item dropdown">
-        <a class="nav-link" data-toggle="dropdown" href="#">
-          <i class="far fa-bell"></i>
-          <span class="badge badge-warning navbar-badge">15</span>
-        </a>
-        <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
-          <span class="dropdown-header">15 Notifications</span>
-          <div class="dropdown-divider"></div>
-          <a href="#" class="dropdown-item">
-            <i class="fas fa-envelope mr-2"></i> 4 new messages
-            <span class="float-right text-muted text-sm">3 mins</span>
-          </a>
-          <div class="dropdown-divider"></div>
-          <a href="#" class="dropdown-item">
-            <i class="fas fa-users mr-2"></i> 8 friend requests
-            <span class="float-right text-muted text-sm">12 hours</span>
-          </a>
-          <div class="dropdown-divider"></div>
-          <a href="#" class="dropdown-item">
-            <i class="fas fa-file mr-2"></i> 3 new reports
-            <span class="float-right text-muted text-sm">2 days</span>
-          </a>
-          <div class="dropdown-divider"></div>
-          <a href="#" class="dropdown-item dropdown-footer">See All Notifications</a>
-        </div>
-      </li>
       <li class="nav-item">
         <a class="nav-link" data-widget="fullscreen" href="#" role="button">
           <i class="fas fa-expand-arrows-alt"></i>
@@ -233,7 +206,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
             <a href="#" class="nav-link active">
                 <i class="fa-solid fa-users"></i>
               <p>
-                Empleados
+                Gestiones Empleados
                 <i class="right fas fa-angle-left"></i>
               </p>
             </a>
@@ -242,26 +215,32 @@ scratch. This page gets rid of all links and provides the needed markup only.
               <li class="nav-item">
                 <a href="/users" class="nav-link">
                   <i class="fa-solid fa-arrows-down-to-people"></i>
-                  <p>Gestión de usuarios</p>
+                  <p>Administrar usuarios</p>
                 </a>
               </li>
               @endcan
               <li class="nav-item">
                 <a href="/empleados" class="nav-link">
                     <i class="fa-solid fa-users-gear"></i>
-                  <p>Gestión de empleados</p>
+                  <p>Administrar empleados</p>
                 </a>
               </li>
               <li class="nav-item">
                 <a href="/horarioasignado" class="nav-link">
                     <i class="fa-solid fa-calendar-days"></i>
-                  <p>Gestión de Horarios</p>
+                  <p>Administrar de Horarios</p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="trabextralaboral" class="nav-link">
+                <a href="/trabextralaboral" class="nav-link">
                     <i class="fa-solid fa-business-time"></i>
-                  <p>Gestión Horas Extra</p>
+                  <p>Administrar Horas Extra</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="{{ route('asistencias.hoy') }}" class="nav-link">
+                    <i class="fa-solid fa-address-card"></i>
+                  <p> Administrar Asistencias</p>
                 </a>
               </li>
             </ul>
@@ -274,7 +253,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
             <a href="#" class="nav-link active">
                 <i class="fa-solid fa-user-check"></i>
               <p>
-                Control Asistencia
+                Mis Gestiones
                 <i class="right fas fa-angle-left"></i>
               </p>
             </a>

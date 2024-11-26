@@ -1,6 +1,13 @@
 @extends('home')
 
 @section('content')
+
+<style>
+    #example1 {
+        font-size: 14px; 
+    }
+</style>
+
 <div class="content" style="margin-left: 20px">
     <h2>Solicitudes de Ausencia</h2>
     <div class="row">
@@ -15,9 +22,13 @@
                             <thead>
                                 <tr>
                                     <th>#</th>
+                                    <th>Nombre</th>
+                                    <th>Departamento</th>
                                     <th>Fecha Inicio</th>
                                     <th>Fecha Fin</th>
-                                    <th>Ausencia</th>
+                                    <th>Motivo</th>
+                                    <th>Jefe Inmediato</th>
+                                    <th>Autorizado Por</th>
                                     <th>Estado</th>
                                     <th>Acciones</th>
                                 </tr>
@@ -26,25 +37,32 @@
                                 @foreach($empleadoAusencias as $index => $empleadoAusencia)
                                 <tr>
                                     <td>{{ $index + 1 }}</td>
+                                    <td>{{ $empleadoAusencia->nombres }}</td>
+                                    <td>{{ $empleadoAusencia->nombredpto }}</td>
                                     <td>{{ $empleadoAusencia->FInicio }}</td>
                                     <td>{{ $empleadoAusencia->FFin }}</td>
-                                    <td>{{ $empleadoAusencia->ausencia->tipoausencia }}</td>
+                                    <td>{{ $empleadoAusencia->tipoausencia }}</td>
+                                    <td>{{ $empleadoAusencia->jefe }}</td>
+                                    <td>{{ $empleadoAusencia->autoriza }}</td>
                                     <td>
-                                        <form action="{{ route('adminausencia.update', $empleadoAusencia->IdEmpleadoAusencia) }}" method="POST" style="display:inline;">
-                                            @csrf
-                                            @method('PUT')
-                                            <input type="hidden" name="estado" value="0">
-                                            <input type="checkbox" name="estado" value="1" onchange="this.form.submit()" {{ $empleadoAusencia->estado == 1 ? 'checked' : '' }}>
-                                        </form>
+                                        @if($empleadoAusencia->estado == 0)
+                                            <span class="badge badge-warning">Pendiente</span>
+                                        @elseif($empleadoAusencia->estado == 1)
+                                            <span class="badge badge-success">Aprobado</span>
+                                        @else
+                                            <span class="badge badge-danger">No Aprobado</span>
+                                        @endif
                                     </td>
-                                    <td style="width:140px;">
-                                        <a href="{{ route('adminausencia.show', $empleadoAusencia->IdEmpleadoAusencia) }}" class="btn btn-info" title="Ver registro"><i class="fa-solid fa-eye"></i></a>
-                                        <a href="{{ route('adminausencia.edit', $empleadoAusencia->IdEmpleadoAusencia) }}" class="btn btn-warning" title="Modificar registro"><i class="fa-solid fa-pen-to-square"></i></a>
-                                        <form action="{{ route('adminausencia.destroy', $empleadoAusencia->IdEmpleadoAusencia) }}" method="POST" style="display:inline;" onsubmit="return confirm('Está seguro de eliminar esta solicitud?');">
-                                            @csrf
-                                            @method('DELETE')
-                                            <button type="submit" class="btn btn-danger" title="Eliminar registro"><i class="fa-solid fa-trash"></i></button>
-                                        </form>
+                                    <td style="width:110px;">
+                                        <a href="{{ route('adminausencia.edit', ['IdEmpleadoAusencia' => $empleadoAusencia->IdEmpleadoAusencia, 'estado' => 1]) }}" class="btn btn-success btn-sm" title="Aprobar solicitud">
+                                            <i class="fa-solid fa-circle-check"></i>
+                                        </a>
+                                        <a href="{{ route('adminausencia.edit', ['IdEmpleadoAusencia' => $empleadoAusencia->IdEmpleadoAusencia, 'estado' => 0]) }}" class="btn btn-warning btn-sm" title="Cambiar a pendiente">
+                                            <i class="fa-solid fa-circle-pause"></i>
+                                        </a>
+                                        <a href="{{ route('adminausencia.edit', ['IdEmpleadoAusencia' => $empleadoAusencia->IdEmpleadoAusencia, 'estado' => 2]) }}" class="btn btn-danger btn-sm" title="Rechazar solicitud">
+                                            <i class="fa-solid fa-circle-xmark"></i>
+                                        </a>
                                     </td>
                                 </tr>
                                 @endforeach

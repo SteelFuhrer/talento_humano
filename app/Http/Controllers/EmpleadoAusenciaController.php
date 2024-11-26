@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\EmpleadoAusencia;
+use Illuminate\Support\Facades\Auth;
 use App\Models\Empleado;
 use App\Models\Ausencia;
 
@@ -11,16 +12,25 @@ class EmpleadoAusenciaController extends Controller
 {
     public function index()
     {
-        $empleadoAusencias = EmpleadoAusencia::all();
+        $userCi = Auth::user()->ci;
+        
+        $empleadoAusencias = EmpleadoAusencia::whereHas('empleado', function($query) use ($userCi) {
+            $query->where('ci', $userCi);
+        })->get();
+        
         return view('empleadoausencia.index', compact('empleadoAusencias'));
     }
 
+
     public function create()
     {
-        $empleados = Empleado::all();
+        $user = auth()->user();
+        $empleado = $user->empleado;
+        $jefe = $empleado->departamento->jefe ?? null;
+       
         $ausencias = Ausencia::all();
 
-        return view('empleadoausencia.create', compact('empleados', 'ausencias'));
+        return view('empleadoausencia.create', compact('ausencias', 'jefe'));
     }
 
     public function store(Request $request)
@@ -31,8 +41,21 @@ class EmpleadoAusenciaController extends Controller
             'FInicio' => 'required|date',
             'FFin' => 'required|date',
             'CJefe' => 'required|integer',
-            'estado' => 'nullable|boolean',
         ]);
+
+        if ($request->FFin < $request->FInicio) {
+            return redirect()
+                ->back()
+                ->withInput()
+                ->with('error', 'La fecha de fin no puede ser anterior a la fecha de inicio.');
+        }
+    
+
+        if ((int)$request->CJefe === 0) {
+            return redirect()->back()->withInput()->with('error', 'Actualmente no pertenece a ningún departamento, favor solicitar asignación');
+        }
+
+        $request->merge(['estado' => 0]); //0 es pendiente, 1 es aprobado y 2 es rechazado
 
         EmpleadoAusencia::create($request->all());
 

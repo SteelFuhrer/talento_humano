@@ -19,7 +19,6 @@ use App\Http\Controllers\RetrasoController;
 use App\Http\Controllers\PaseEmpleadoController;
 use App\Http\Controllers\AdminAusenciaController;
 
-
 Route::get('/', function () {
     return view('welcome');
 });
@@ -41,7 +40,10 @@ Route::resource('paseempleado', PaseEmpleadoController::class);
 Route::resource('horarioasignado', HorarioAsignadoController::class)->middleware('can:empleados.index');
 
 Route::resource('empleadoausencia', EmpleadoAusenciaController::class);
-Route::resource('adminausencia', AdminAusenciaController::class)->middleware('can:ausencias.index');
+Route::resource('adminausencia', AdminAusenciaController::class)
+    ->except(['edit', 'update', 'store', 'destroy'])
+    ->middleware('can:empleados.index');
+Route::get('/adminausencia/{IdEmpleadoAusencia}/edit/{estado}', [AdminAusenciaController::class, 'update'])->name('adminausencia.edit');
 
 //config users
 Route::get('/configuracion/{user}', [UserController::class, 'config'])->name('configuracion');
@@ -59,5 +61,8 @@ Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard
 Route::post('/asistencia', [EntradasalidaController::class, 'registrarAsistencia'])->name('asistencia.registrar');
 Route::get('/asistencia', [EntradasalidaController::class,'showAsistenciaForm'])->name('asistencia.form');
 Route::get('/asistencia/buscar', [EntradasalidaController::class, 'buscarPorFecha'])->name('asistencia.buscar');
+Route::get('/asistencias/hoy', [EntradasalidaController::class, 'verAsistenciasHoy'])->middleware('can:empleados.index')->name('asistencias.hoy');
+Route::get('/asistencia/buscarAsist', [EntradasalidaController::class, 'buscarAsistencias'])->middleware('can:empleados.index')->name('asistencia.buscarAsist');
+
 
 Route::resource('retraso', RetrasoController::class);

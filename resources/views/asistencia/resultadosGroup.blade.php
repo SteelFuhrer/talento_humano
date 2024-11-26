@@ -1,37 +1,44 @@
 @extends('home')
 @section('content')
-<div class="container">
-    <div class="col-md-12">
+    <div class="container">
         <div class="card card-outline card-info">
             <div class="card-header">
-                <h2>Resultados de Asistencia</h2>
-                <p><strong>Rango: </strong> {{ $fechaInicio }} @if ($fechaInicio != $fechaFin) - {{ $fechaFin }} @endif</p>
+                <h3>Registros de Asistencia - Desde {{ $fechaInicio }} hasta {{ $fechaFin }}</h3>
             </div>
+
             <div class="card-body">
-                <table id="example1" class="table table-striped table-bordered">
+                <table id="example1" class="table table-bordered table-striped">
                     <thead>
                         <tr>
-                            <th>Fecha</th>
-                            <th>Tipo</th>
+                            <th>Nombre</th>
+                            <th>Apellido</th>
+                            <th>Departamento</th>
+                            <th>Tipo de Asistencia</th>
                             <th>Hora</th>
+                            <th>Fecha</th>
                         </tr>
                     </thead>
                     <tbody>
-                        @forelse ($asistencias as $asistencia)
+                        @forelse($datos as $dato)
                             <tr>
-                                <td>{{ \Carbon\Carbon::parse($asistencia->fechahora)->format('Y-m-d') }}</td>
-                                <td>{{ $asistencia->tipoAsistencia->tipoes }}</td>
-                                <td>{{ \Carbon\Carbon::parse($asistencia->fechahora)->format('H:i:s') }}</td>
+                                <td>{{ $dato['nombre'] }}</td>
+                                <td>{{ $dato['apellido'] }}</td>
+                                <td>{{ $dato['departamento'] }}</td>
+                                <td>{{ $dato['tipo_asistencia'] }}</td>
+                                <td>{{ $dato['hora'] }}</td>
+                                <td>{{ $dato['fecha'] }}</td>
                             </tr>
                         @empty
                             <tr>
-                                <td colspan="3">No hay registros de asistencia para este rango de fechas.</td>
+                                <td colspan="6" class="text-center">No se encontraron registros en el rango seleccionado.
+                                </td>
                             </tr>
                         @endforelse
                     </tbody>
                 </table>
+                <!-- Page specific script -->
                 <script>
-                    $(function () {
+                    $(function() {
                         $("#example1").DataTable({
                             "pageLength": 10,
                             "language": {
@@ -53,26 +60,27 @@
                                     "previous": "Anterior"
                                 }
                             },
-                            "responsive": true, "lengthChange": true, "autoWidth": false,
+                            "responsive": true,
+                            "lengthChange": true,
+                            "autoWidth": false,
                             buttons: [{
-                                extend: 'collection',
-                                text: 'Reportes',
-                                orientation: 'landscape',
-                                buttons: [{
-                                    text: 'Copiar',
-                                    extend: 'copy',
-                                }, {
-                                    extend: 'pdf'
-                                },{
-                                    extend: 'csv'
-                                },{
-                                    extend: 'excel'
-                                },{
-                                    text: 'Imprimir',
-                                    extend: 'print'
-                                }
-                                ]
-                            },
+                                    extend: 'collection',
+                                    text: 'Reportes',
+                                    orientation: 'landscape',
+                                    buttons: [{
+                                        text: 'Copiar',
+                                        extend: 'copy',
+                                    }, {
+                                        extend: 'pdf'
+                                    }, {
+                                        extend: 'csv'
+                                    }, {
+                                        extend: 'excel'
+                                    }, {
+                                        text: 'Imprimir',
+                                        extend: 'print'
+                                    }]
+                                },
                                 {
                                     extend: 'colvis',
                                     text: 'Visor de columnas',
@@ -84,9 +92,8 @@
                 </script>
             </div>
             <div class="card-footer">
-                <a href="{{ route('asistencia.form') }}" class="btn btn-secondary">Volver</a>
+                <a href="{{ route('asistencias.hoy') }}" class="btn btn-secondary">Volver</a>
             </div>
         </div>
     </div>
-</div>
 @endsection

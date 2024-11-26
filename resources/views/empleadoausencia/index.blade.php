@@ -7,6 +7,7 @@
         <div class="col-md-12">
             <div class="card card-outline card-primary">
                 <div class="card-header">
+                    <h3 class="card-title"><b>Listado de solicitudes</b></h3>
                     <div class="card-tools">
                         <a href="{{ route('empleadoausencia.create') }}" class="btn btn-success btn-sm" title="Nueva Solicitud"><i class="fa-solid fa-circle-plus"></i> Nueva</a>
                     </div>
@@ -29,11 +30,19 @@
                                 @foreach($empleadoAusencias as $empleadoAusencia)
                                 <tr>
                                     <td><?php echo $count; ?></td>
-                                    <td>{{ $empleadoAusencia->empleado->nombre }}</td>
+                                    <td>{{ $empleadoAusencia->empleado->nombre }} {{ $empleadoAusencia->empleado->apellido }} </td>
                                     <td>{{ $empleadoAusencia->FInicio}}</td>
                                     <td>{{ $empleadoAusencia->FFin }}</td>
                                     <td>{{ $empleadoAusencia->ausencia->tipoausencia }}</td>
-                                    <td>{{ $empleadoAusencia->estado ? 'Aprobado' : 'No Aprobado' }}</td>
+                                    <td>
+                                        @if($empleadoAusencia->estado == 0)
+                                            <span class="badge bg-warning">Pendiente</span>
+                                        @elseif($empleadoAusencia->estado == 1)
+                                            <span class="badge bg-success">Aprobado</span>
+                                        @elseif($empleadoAusencia->estado == 2)
+                                            <span class="badge bg-danger">No Aprobado</span>
+                                        @endif
+                                    </td>
                                </tr>
                                 <?php $count++; ?>
                                 @endforeach

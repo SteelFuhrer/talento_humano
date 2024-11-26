@@ -1,7 +1,7 @@
 @extends('home')
 @section('content')
 <div class="content" style="margin-left: 20px">
-    <h2>Gestión de Trabajo ExtraLaborales</h2>
+    <h2>Gestión de Horas Extras</h2>
     <div class="row">
         <div class="col-md-12">
             <div class="card card-outline card-primary">

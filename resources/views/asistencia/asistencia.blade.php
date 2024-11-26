@@ -76,7 +76,7 @@
                                 <input type="date" name="fecha_fin" id="fecha_fin" class="form-control">
                             </div>
                             <div class="col-md-2 align-self-end">
-                                <button type="submit" class="btn btn-primary">Buscar</button>
+                                <button type="submit" class="btn btn-primary"><i class="fa-solid fa-magnifying-glass"></i> Buscar</button>
                             </div>
                         </div>
                     </form>

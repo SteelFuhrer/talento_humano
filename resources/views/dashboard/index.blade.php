@@ -46,17 +46,19 @@
 }
 </style>
 
-<div class="container mt-4">
-    <div class="row g-3"> <!-- Clase g-3 agrega espacio entre las columnas -->
-        <!-- Bloque: Total Empleados -->
-        <div class="col-md-3">
-            <div class="card shadow-sm border-0 text-white bg-primary">
-                <i class="fas fa-users fa-3x"></i> <!-- Ícono -->
-                <h5 class="card-title">{{ $totalEmpleados }}</h5> <!-- Número -->
-                <p class="card-text">Total Empleados</p> <!-- Texto -->
-            </div>
-        </div>
-
+        @can('ausencias.index')
+        <div class="container mt-4">
+            <div class="row g-3"> <!-- Clase g-3 agrega espacio entre las columnas -->
+                <!-- Bloque: Total Empleados -->
+                <div class="col-md-3">
+                    <div class="card shadow-sm border-0 text-white bg-primary">
+                        <i class="fas fa-users fa-3x"></i> <!-- Ícono -->
+                        <h5 class="card-title">{{ $totalEmpleados }}</h5> <!-- Número -->
+                        <p class="card-text">Total Empleados</p> <!-- Texto -->
+                    </div>
+                </div>
+        @endcan
+        
         <!-- Bloque: Total Departamentos -->
         <div class="col-md-3">
             <div class="card shadow-sm border-0 text-white bg-info">

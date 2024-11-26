@@ -27,4 +27,10 @@ class EmpleadoAusencia extends Model
     {
         return $this->belongsTo(Ausencia::class, 'IdAusencia', 'id_ausencia');
     }
+
+    public function jefeAutorizador()
+{
+    return $this->belongsTo(Empleado::class, 'cjefe');
+}
+
 }
