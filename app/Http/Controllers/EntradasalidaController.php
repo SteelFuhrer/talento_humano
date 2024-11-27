@@ -107,21 +107,36 @@ class EntradasalidaController extends Controller
         $registrosHoy = EntradaSalida::whereDate('fechahora', $hoy)
             ->with(['empleado', 'tipoAsistencia'])
             ->orderBy('fechahora')
-            ->get()
-            ->keyBy('ci'); // Agrupamos por 'ci'
+            ->get();
 
-        // Construir la colección final para la vista
-        $datos = $empleados->map(function ($empleado) use ($registrosHoy) {
-            $registro = $registrosHoy->get($empleado->ci);
+       // Construir la colección final para la vista
+        $datos = $empleados->flatMap(function ($empleado) use ($registrosHoy, $hoy) {
+            // Filtrar registros de este empleado
+            $registrosEmpleado = $registrosHoy->where('ci', $empleado->ci);
 
-            return [
+            // Si tiene registros de asistencia, incluir cada uno
+            if ($registrosEmpleado->isNotEmpty()) {
+                return $registrosEmpleado->map(function ($registro) use ($empleado) {
+                    return [
+                        'nombre' => $empleado->nombre,
+                        'apellido' => $empleado->apellido,
+                        'departamento' => $empleado->departamento->nombredpto ?? 'Sin asignar',
+                        'tipo_asistencia' => $registro->tipoAsistencia->tipoes ?? 'Sin registro de asistencia',
+                        'hora' => $registro->fechahora->format('H:i:s'),
+                        'fecha' => $registro->fechahora->toDateString(),
+                    ];
+                });
+            }
+
+            // Si no tiene registros, incluir un mensaje único
+            return [[
                 'nombre' => $empleado->nombre,
                 'apellido' => $empleado->apellido,
                 'departamento' => $empleado->departamento->nombredpto ?? 'Sin asignar',
-                'tipo_asistencia' => $registro->tipoAsistencia->tipoes ?? 'Sin registro de asistencia',
-                'hora' => $registro ? $registro->fechahora->format('H:i:s') : 'Sin registro de asistencia',
-                'fecha' => $registro ? $registro->fechahora->toDateString() : Carbon::now()->toDateString(),
-            ];
+                'tipo_asistencia' => 'Sin registro de asistencia',
+                'hora' => 'Sin registro de asistencia',
+                'fecha' => $hoy,
+            ]];
         });
 
         return view('asistencia.reporte', compact('datos'));
