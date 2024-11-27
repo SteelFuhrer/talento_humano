@@ -11,7 +11,13 @@ class RetrasoController extends Controller
 {
     public function index()
     {
-        $retrasos = Retraso::with('empleado', 'tipoRetraso')->get();
+        $ciUsuario = auth()->user()->ci;
+
+        $retrasos = Retraso::with('empleado', 'tipoRetraso')
+            ->where('ci', $ciUsuario)
+            ->orderBy('fecha', 'asc')
+            ->get();
+
         return view('retraso.index', compact('retrasos'));
     }
 
@@ -65,5 +71,16 @@ class RetrasoController extends Controller
         $retraso->delete();
         return redirect()->route('retraso.index')->with('success', 'Retraso eliminado exitosamente.');
     }
+
+    public function index_all()
+    {
+        $retrasos = Retraso::with(['empleado.departamento']) 
+            ->orderBy('fecha', 'asc') 
+            ->get();
+
+        return view('retraso.admin', compact('retrasos'));
+    }
+
+    
 }
 

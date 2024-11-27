@@ -17,9 +17,12 @@
                             <thead>
                                 <tr>
                                     <th>#</th>
+                                    <th>Nombre</th>
+                                    <th>Departamento</th>
                                     <th>Descripcion</th>
                                     <th>Hora Inicio</th>
                                     <th>Hora Fin</th>
+                                    <th>Total Horas</th>
                                     <th>Acciones</th>
                                 </tr>
                             </thead>
@@ -28,11 +31,13 @@
                                 @foreach ($trabextralaborales as $trabextralaboral)
                                     <tr>
                                         <td><?php echo $count; ?></td>
+                                        <td>{{ $trabextralaboral->empleado->nombre}} {{ $trabextralaboral->empleado->apellido}}</td>
+                                        <td>{{ $trabextralaboral->empleado->departamento->nombredpto ?? 'Sin departamento' }}</td>
                                         <td>{{ $trabextralaboral->descripciontrab}}</td>
                                         <td >{{ $trabextralaboral->hini }}</td>
                                         <td >{{ $trabextralaboral->hfin }}</td>
-                                        <td style="width:140px;">
-                                            <a href="{{ route('trabextralaboral.show', ['trabextralaboral' => $trabextralaboral->idtrabextralaboral]) }}" class="btn btn-info" title="Ver registro"><i class="fa-solid fa-eye"></i></a>
+                                        <td>{{ $trabextralaboral->horas_extras }}</td>
+                                        <td style="width:90px;">
                                             <a href="{{ route('trabextralaboral.edit', ['trabextralaboral' => $trabextralaboral->idtrabextralaboral]) }}" class="btn btn-warning" title="Modificar registro"><i class="fa-solid fa-pen-to-square"></i></a>
                                             <form action="{{ route('trabextralaboral.destroy', ['trabextralaboral' => $trabextralaboral->idtrabextralaboral]) }}" method="POST" style="display:inline;" onsubmit="return confirm('Está seguro de eliminar este registro?');">
                                                 @csrf

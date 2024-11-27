@@ -15,13 +15,8 @@
                         @csrf
                         <!-- Empleado -->
                         <div class="form-group">
-                            <label for="ci">Empleado</label>
-                            <select name="ci" id="ci" class="form-control" required>
-                                <option value="">Seleccione un empleado</option>
-                                @foreach ($empleados as $empleado)
-                                    <option value="{{ $empleado->ci }}">{{ $empleado->nombre_completo }}</option>
-                                @endforeach
-                            </select>
+                            <input type="text" name="ci" id="ci" class="form-control"
+                            value="{{ Auth::user()->empleado?->ci}}" hidden>    
                         </div>
 
                         <!-- Tipo de Retraso -->
@@ -54,8 +49,8 @@
                         </div>
 
                         <!-- Botones -->
-                        <button type="submit" class="btn btn-success"><i class="fa-solid fa-floppy-disk"></i> Guardar</button>
-                        <a href="{{ route('retraso.index') }}" class="btn btn-secondary"><i class="fa-solid fa-circle-left"></i> Cancelar</a>
+                        <button type="submit" class="btn btn-primary"><i class="fa-solid fa-floppy-disk"></i> Guardar</button>
+                        <a href="{{ route('retraso.index') }}" class="btn btn-secondary"><i class="fa-solid fa-circle-left"></i> Volver</a>
                     </form>
                 </div>
             </div>

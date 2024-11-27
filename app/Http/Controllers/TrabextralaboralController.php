@@ -10,7 +10,7 @@ class TrabextralaboralController extends Controller
 {
     public function index()
     {
-        $trabextralaborales= Trabextralaboral::with('empleado')->get();
+        $trabextralaborales= Trabextralaboral::with('empleado.departamento')->get();
         return view('trabextralaboral.index', compact('trabextralaborales'));
     }
 
@@ -32,11 +32,6 @@ class TrabextralaboralController extends Controller
         Trabextralaboral::create($request->all());
 
         return redirect()->route('trabextralaboral.index')->with('success', 'Trabajo Extra Laboral creado exitosamente.');
-    }
-
-    public function show(Trabextralaboral $trabextralaboral)
-    {
-        return view('trabextralaboral.show', compact('trabextralaboral'));
     }
 
     public function destroy(Trabextralaboral $trabextralaboral)

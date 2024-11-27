@@ -2,7 +2,7 @@
 
 @section('content')
 <div class="container">
-    <h2 class="card-header">Registrar tipo de ausencia</h2>
+    <h2>Registrar tipo de ausencia</h2>
     <div class="card card-outline card-success" style="margin: 10px; max-width: 1200px; margin: auto;">
         <div class="card-header">
             <p><strong> Ingrese los datos </strong></p>

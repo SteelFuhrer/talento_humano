@@ -43,7 +43,9 @@ Route::resource('empleadoausencia', EmpleadoAusenciaController::class);
 Route::resource('adminausencia', AdminAusenciaController::class)
     ->except(['edit', 'update', 'store', 'destroy'])
     ->middleware('can:empleados.index');
-Route::get('/adminausencia/{IdEmpleadoAusencia}/edit/{estado}', [AdminAusenciaController::class, 'update'])->name('adminausencia.edit');
+Route::get('/adminausencia/{IdEmpleadoAusencia}/edit/{estado}', [AdminAusenciaController::class, 'update'])
+    ->middleware('can:empleados.index')
+    ->name('adminausencia.edit');
 
 //config users
 Route::get('/configuracion/{user}', [UserController::class, 'config'])->name('configuracion');
@@ -64,5 +66,5 @@ Route::get('/asistencia/buscar', [EntradasalidaController::class, 'buscarPorFech
 Route::get('/asistencias/hoy', [EntradasalidaController::class, 'verAsistenciasHoy'])->middleware('can:empleados.index')->name('asistencias.hoy');
 Route::get('/asistencia/buscarAsist', [EntradasalidaController::class, 'buscarAsistencias'])->middleware('can:empleados.index')->name('asistencia.buscarAsist');
 
-
-Route::resource('retraso', RetrasoController::class);
+Route::resource('retraso', RetrasoController::class)->except(['show']);
+Route::get('/retraso/admin', [RetrasoController::class, 'index_all'])->middleware('can:empleados.index')->name('retraso.admin');

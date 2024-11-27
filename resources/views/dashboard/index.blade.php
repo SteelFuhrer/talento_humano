@@ -46,8 +46,6 @@
 }
 </style>
 
-<p><strong>  </strong></p>
-
 <section class="content">
     <div class="container-fluid">
       <div class="row">
@@ -63,7 +61,7 @@
 
         <div class="container mt-4">
             <div class="row g-3"> <!-- Clase g-3 agrega espacio entre las columnas -->
-                @can('ausencias.index')
+                @can('empleados.index')
                     <!-- Bloque: Total Empleados -->
                     <div class="col-md-3">
                         <div class="card shadow-sm border-0 text-white bg-primary">
@@ -74,33 +72,33 @@
                     </div>
                
         
-        <!-- Bloque: Total Departamentos -->
-        <div class="col-md-3">
-            <div class="card shadow-sm border-0 text-white bg-info">
-                <i class="fas fa-building fa-3x"></i> <!-- Ícono -->
-                <h5 class="card-title">{{ $totalDepartamentos }}</h5> <!-- Número -->
-                <p class="card-text">Total Departamentos</p> <!-- Texto -->
-            </div>
-        </div>
+                    <!-- Bloque: Total Departamentos -->
+                    <div class="col-md-3">
+                        <div class="card shadow-sm border-0 text-white bg-info">
+                            <i class="fas fa-building fa-3x"></i> <!-- Ícono -->
+                            <h5 class="card-title">{{ $totalDepartamentos }}</h5> <!-- Número -->
+                            <p class="card-text">Total Departamentos</p> <!-- Texto -->
+                        </div>
+                    </div>
 
-        <!-- Bloque: Ausencias del Día -->
-        <div class="col-md-3">
-            <div class="card shadow-sm border-0 text-white bg-warning">
-                <i class="fas fa-calendar-times fa-3x"></i> <!-- Ícono -->
-                <h5 class="card-title">{{ $totalEmpleadoausencia }}</h5> <!-- Número -->
-                <p class="card-text">Ausencias Hoy</p> <!-- Texto -->
-            </div>
-        </div>
+                    <!-- Bloque: Ausencias del Día -->
+                    <div class="col-md-3">
+                        <div class="card shadow-sm border-0 text-white bg-warning">
+                            <i class="fas fa-calendar-times fa-3x"></i> <!-- Ícono -->
+                            <h5 class="card-title">{{ $totalEmpleadoausencia }}</h5> <!-- Número -->
+                            <p class="card-text">Ausencias Reportadas</p> <!-- Texto -->
+                        </div>
+                    </div>
 
-        <!-- Bloque: Retrasos del Día -->
-        <div class="col-md-3">
-            <div class="card shadow-sm border-0 text-white bg-danger">
-                <i class="fas fa-clock fa-3x"></i> <!-- Ícono -->
-                <h5 class="card-title">{{ $totalRetraso }}</h5> <!-- Número -->
-                <p class="card-text">Retrasos Hoy</p> <!-- Texto -->
+                    <!-- Bloque: Retrasos del Día -->
+                    <div class="col-md-3">
+                        <div class="card shadow-sm border-0 text-white bg-danger">
+                            <i class="fas fa-clock fa-3x"></i> <!-- Ícono -->
+                            <h5 class="card-title">{{ $totalRetraso }}</h5> <!-- Número -->
+                            <p class="card-text">Retrasos Reportados</p> <!-- Texto -->
+                        </div>
+                    </div>
+                @endcan
             </div>
         </div>
-        @endcan
-    </div>
-</div>
 @endsection

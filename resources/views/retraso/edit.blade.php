@@ -53,8 +53,8 @@
                         </div>
 
                         <!-- Botones -->
-                        <button type="submit" class="btn btn-success"><i class="fa-solid fa-floppy-disk"></i> Actualizar</button>
-                        <a href="{{ route('retraso.index') }}" class="btn btn-secondary"><i class="fa-solid fa-circle-left"></i> Cancelar</a>
+                        <button type="submit" class="btn btn-primary"><i class="fa-solid fa-floppy-disk"></i> Actualizar</button>
+                        <a href="{{ route('retraso.index') }}" class="btn btn-secondary"><i class="fa-solid fa-circle-left"></i> Volver</a>
                     </form>
                 </div>
             </div>

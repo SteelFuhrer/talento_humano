@@ -251,14 +251,14 @@ scratch. This page gets rid of all links and provides the needed markup only.
               </li>
               <li class="nav-item">
                 <a href="/adminpase" class="nav-link">
-                  <i class="fa-solid fa-list"></i>
-                  <p> Ver Solicitudes Pase De Salidas</p>
+                  <i class="fa-solid fa-ticket"></i>
+                  <p> Pases De Salidas</p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="/adminpase" class="nav-link">
-                  <i class="fa-solid fa-list"></i>
-                  <p> Ver Solicitudes De Retrasos</p>
+                <a href="{{ route('retraso.admin') }}" class="nav-link">
+                  <i class="fa-solid fa-bed"></i>
+                  <p> Ver Retrasos</p>
                 </a>
               </li>
             </ul>
