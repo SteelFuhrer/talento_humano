@@ -249,6 +249,18 @@ scratch. This page gets rid of all links and provides the needed markup only.
                   <p> Ver Solicitudes Ausencias</p>
                 </a>
               </li>
+              <li class="nav-item">
+                <a href="/adminpase" class="nav-link">
+                  <i class="fa-solid fa-list"></i>
+                  <p> Ver Solicitudes Pase De Salidas</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="/adminpase" class="nav-link">
+                  <i class="fa-solid fa-list"></i>
+                  <p> Ver Solicitudes De Retrasos</p>
+                </a>
+              </li>
             </ul>
           </li>
         @endcan

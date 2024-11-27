@@ -72,7 +72,7 @@
                             <p class="card-text">Total Empleados</p> <!-- Texto -->
                         </div>
                     </div>
-                @endcan
+               
         
         <!-- Bloque: Total Departamentos -->
         <div class="col-md-3">
@@ -100,6 +100,7 @@
                 <p class="card-text">Retrasos Hoy</p> <!-- Texto -->
             </div>
         </div>
+        @endcan
     </div>
 </div>
 @endsection
