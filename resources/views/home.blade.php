@@ -250,12 +250,6 @@ scratch. This page gets rid of all links and provides the needed markup only.
                 </a>
               </li>
               <li class="nav-item">
-                <a href="/adminpase" class="nav-link">
-                  <i class="fa-solid fa-ticket"></i>
-                  <p> Pases De Salidas</p>
-                </a>
-              </li>
-              <li class="nav-item">
                 <a href="{{ route('retraso.admin') }}" class="nav-link">
                   <i class="fa-solid fa-bed"></i>
                   <p> Ver Retrasos</p>
@@ -287,12 +281,6 @@ scratch. This page gets rid of all links and provides the needed markup only.
                     <i class="fa-solid fa-user-xmark"></i>
                   <p>Solicitar Ausencia</p>
                 </a>
-              <li class="nav-item">
-                <a href="/paseempleado" class="nav-link">
-                    <i class="fa-solid fa-user-shield"></i>
-                  <p>Solicitar Pase Salida</p>
-                </a>
-              </li>
               <li class="nav-item">
                 <a href="/retraso" class="nav-link">
                     <i class="fa-solid fa-person-running"></i>
